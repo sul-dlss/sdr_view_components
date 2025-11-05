@@ -1,0 +1,118 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+// Header
+.cardinal {
+  --bs-dark-rgb: var(--stanford-cardinal-rgb);
+}
+
+.container.without-progress-bar {
+  max-width: 960px;
+}
+
+.masthead {
+  color: white;
+
+  h1 {
+    font-size: 2.25rem;
+  }
+}
+
+// Submission form
+.header-help {
+  padding-left: 42px;
+}
+
+.header-help p:last-of-type {
+  margin-bottom: 0;
+}
+
+.character-circle {
+  @extend .d-inline-flex;
+  @extend .align-items-center;
+  @extend .justify-content-center;
+  @extend .rounded-circle;
+  @extend .text-white;
+
+  width: 28px;
+  height: 28px;
+  font-size: 1rem;
+}
+
+.character-circle.character-circle-disabled {
+  background-color: var(--stanford-60-black);
+}
+
+.character-circle.character-circle-success {
+  @extend .bg-success;
+}
+
+.character-circle.character-circle-blank {
+  @extend .border;
+  @extend .border-1;
+}
+
+.character-circle.character-circle-check {
+  font-family: bootstrap-icons !important;
+}
+
+.badge.badge-in-progress {
+  background-color: var(--stanford-60-black);
+}
+
+.badge.badge-completed {
+  @extend .text-bg-success;
+}
+
+.btn-group-toggle {
+  // Provides visible indication when selected.
+  label.btn {
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgb(var(--bs-btn-focus-shadow-rgb), .5);
+  }
+
+  input:checked + label  {
+    @extend .btn-primary;
+  }
+
+  input:not(:checked) + label  {
+    @extend .btn-outline-primary;
+  }
+
+  .btn-check:checked + .btn {
+    background-color: var(--stanford-digital-blue);
+    border-color: var(--stanford-digital-blue);
+  }
+
+  :not(.btn-check:checked) + .btn {
+    color: var(--stanford-digital-blue);
+    border-color: var(--stanford-digital-blue);
+  }
+}
+
+.card-step {
+  --bs-card-cap-padding-y: 1rem;
+}
+
+.banner.alert {
+  a.btn-primary {
+    color: white;
+  }
+}
+
+// Increase contrast for input borders
+.form-control, .form-select, .form-check-input {
+  border-color: var(--stanford-60-black);
+}

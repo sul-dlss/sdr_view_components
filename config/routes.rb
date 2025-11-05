@@ -1,2 +1,2 @@
-Sul::ViewComponents::Engine.routes.draw do
+Sdr::ViewComponents::Engine.routes.draw do
 end

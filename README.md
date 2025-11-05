@@ -1,14 +1,19 @@
-# Sul::View::Components
-Short description and motivation.
+# Sdr::ViewComponents
+
+A rails gem to provide reusable view components used throughout the SDR applications and implement
+component library assets.
 
 ## Usage
-How to use my plugin.
+
+```
+<% render Sdr::ViewComponent::....>
+```
 
 ## Installation
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "sul-view-components"
+gem "sdr-view_components"
 ```
 
 And then execute:
@@ -18,7 +23,7 @@ $ bundle
 
 Or install it yourself as:
 ```bash
-$ gem install sul-view-components
+$ gem install sdr-view_components
 ```
 
 ## Contributing

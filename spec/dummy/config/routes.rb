@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  mount Sul::ViewComponents::Engine => "/sul-view_components"
-
+  mount Sdr::ViewComponents::Engine => "/sdr-view_components"
   root to: "rails/welcome#index"
 end

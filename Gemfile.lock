@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sul-view_components (0.1.0)
+    sdr-view_components (0.1.0)
       rails (>= 8.1.1)
       view_component
 
@@ -316,8 +316,8 @@ DEPENDENCIES
   puma
   rspec-rails
   rubocop-rails-omakase
+  sdr-view_components!
   sqlite3
-  sul-view_components!
 
 BUNDLED WITH
    2.7.2
