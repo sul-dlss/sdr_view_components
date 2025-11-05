@@ -1,0 +1,14 @@
+<%= tag.div role:, class: classes, data:, id: do %>
+  <% if icon? %>
+    <%= tag.div class: icon_classes, role: 'img', 'aria-label': "#{variant} alert icon" %>
+  <% end %>
+  <div class="text-body">
+    <% if title.present? %>
+        <div class="fw-semibold"><%= title %></div>
+    <% end %>
+    <%= value || content %>
+  </div>
+  <% if dismissible? %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  <% end %>
+<% end %>

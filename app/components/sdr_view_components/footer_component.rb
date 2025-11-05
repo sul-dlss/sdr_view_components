@@ -2,6 +2,6 @@
 
 module SdrViewComponents
   # Component for rendering page footer.
-  class FooterComponent < ViewComponent::Base
+  class FooterComponent < BaseComponent
   end
 end

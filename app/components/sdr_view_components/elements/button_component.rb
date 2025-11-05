@@ -3,7 +3,7 @@
 module SdrViewComponents
   module Elements
     # Generic button component
-    class ButtonComponent < ViewComponent::Base
+    class ButtonComponent < BaseComponent
       def initialize(label: nil, classes: [], variant: nil, size: nil, bordered: true, **options) # rubocop:disable Metrics/ParameterLists
         @label = label
         @classes = classes
