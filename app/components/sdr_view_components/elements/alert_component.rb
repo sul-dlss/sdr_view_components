@@ -16,7 +16,7 @@ module SdrViewComponents
 
       # Variants are :danger, :success, :note, :info, :warning, :input
       # input is not part of the component library
-      def initialize(title: nil, variant: :info, dismissible: false, value: nil, data: {}, classes: [], id: nil,
+      def initialize(title: nil, variant: :info, dismissible: false, data: {}, classes: [], id: nil,
                      role: 'alert')
         raise ArgumentError, 'Invalid variant' unless %i[danger success note info warning
                                                          input].include?(variant.to_sym)
@@ -24,7 +24,6 @@ module SdrViewComponents
         @title = title
         @variant = variant.to_sym
         @dismissible = dismissible
-        @value = value
         @data = data
         @classes = classes
         @id = id
@@ -32,7 +31,7 @@ module SdrViewComponents
         super()
       end
 
-      attr_reader :title, :variant, :value, :data, :id, :role
+      attr_reader :title, :variant, :data, :id, :role
 
       def classes
         merge_classes(%w[alert d-flex shadow-sm align-items-center], variant_class, dismissible_class, @classes)
@@ -59,7 +58,7 @@ module SdrViewComponents
       end
 
       def render?
-        title.present? || value.present? || content.present?
+        title.present? || content.present?
       end
     end
   end
