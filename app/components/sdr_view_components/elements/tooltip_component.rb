@@ -18,7 +18,7 @@ module SdrViewComponents
         tooltip.present?
       end
 
-      def data
+      def data # rubocop:disable Metrics/MethodLength
         {
           bs_html: true,
           bs_toggle: 'tooltip',

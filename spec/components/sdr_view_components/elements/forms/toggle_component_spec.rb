@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SdrViewComponents::Elements::Forms::ToggleComponent, type: :component do
+RSpec.describe SdrViewComponents::Elements::Forms::ToggleComponent, type: :component do # rubocop:disable RSpec/MultipleMemoizedHelpers
   let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
   let(:form_class) do
     Class.new(ApplicationForm) do
@@ -20,7 +20,7 @@ RSpec.describe SdrViewComponents::Elements::Forms::ToggleComponent, type: :compo
                                        data: { test: 'more_test_data' })
   end
 
-  it 'creates toggle field with label' do
+  it 'creates toggle field with label' do # rubocop:disable RSpec/ExampleLength
     render_inline(component)
     expect(page).to have_css('label.form-label:not(.visually-hidden)', text: 'Test Toggle')
     expect(page).to have_css('input[type="radio"]:not(.is-invalid)')

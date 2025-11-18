@@ -32,7 +32,7 @@ class ApplicationForm
   # @return [Array<String>] a list of validation errors for this form and any nested forms.
   #   The errors are formatted as "<model name> <attribute>: <error_type>".
   #   This method is primarily intendend for reporting validation errors to Ahoy.
-  def loggable_errors
+  def loggable_errors # rubocop:disable Metrics/MethodLength
     loggable_errors = errors.map do |error|
       "#{model_name} #{error.attribute}: #{error.type}"
     end
