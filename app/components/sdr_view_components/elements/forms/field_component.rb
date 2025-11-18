@@ -5,41 +5,87 @@ module SdrViewComponents
     module Forms
       # Base component for all form fields.
       class FieldComponent < BaseComponent
-        def initialize(form:, field_name:, required: false, hidden_label: false, label: nil, help_text: nil, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength, Metrics/AbcSize
-                       disabled: false, hidden: false, data: {}, input_data: {}, placeholder: nil, width: nil,
-                       label_classes: [], container_classes: [], input_classes: [], tooltip: nil, caption: nil,
-                       error_classes: [], readonly: false, mark_required: false)
-          @form = form
-          @field_name = field_name
-          @mark_required = mark_required
-          @help_text = help_text
-          @hidden = hidden
-          @disabled = disabled
-          @input_data = input_data
-          @placeholder = placeholder
-          @width = width
-          @container_classes = container_classes # container_args
-          @input_classes = input_classes # component_args
-          @caption = caption
-          @error_classes = error_classes
-          @readonly = readonly
+        renders_one :component
 
-          # Argument hashes for passing through to sub-components
-          @container_args = { class: @container_classes, data: }
-          @component_args = { class: field_classes, required:, aria: field_aria, data:, form: form_id }
-          @label_args = { form:, field_name:, label_text: label, hidden_label:, classes: label_classes,
-                          tooltip: }
-          @help_text_args = { id: help_text_id, help_text: }
-          @invalid_args = { form:, field_name: }
-
+        def initialize(**args)
+          @args = args
           super()
         end
 
-        attr_reader :form, :field_name, :hidden, :disabled, :placeholder, :width, :input_data, :caption, :readonly,
-                    :container_args, :component_args, :label_args, :help_text_args, :invalid_args
+        attr_reader :args
+
+        def caption
+          args.fetch(:caption, nil)
+        end
+
+        def component_args
+          { class: input_classes, required:, aria: field_aria, data:, form: form_id }
+        end
+
+        def container_args
+          { class: container_classes, data: }
+        end
+
+        def container_classes
+          merge_classes(args.fetch(:container_classes, []))
+        end
+
+        def data
+          args.fetch(:data, {})
+        end
+
+        def disabled
+          args.fetch(:disabled, false)
+        end
+
+        def error_aria
+          InvalidFeedbackSupport.arias_for(field_name:, form:).tap do |arias|
+            arias[:describedby] = merge_actions(arias[:describedby], help_text_id) if help_text.present?
+          end
+        end
+
+        def error_classes
+          merge_classes(args.fetch(:error_classes, []))
+        end
+
+        def form
+          args.fetch(:form)
+        end
+
+        def field_name
+          args.fetch(:field_name)
+        end
+
+        def help_text_args
+          { id: help_text_id, help_text: }
+        end
+
+        def hidden
+          args.fetch(:hidden, false)
+        end
+
+        def hidden_label
+          args.fetch(:hidden_label, false)
+        end
+
+        def help_text
+          args.fetch(:help_text, nil)
+        end
 
         def help_text_id
-          @help_text_id ||= form.field_id(field_name, 'help')
+          form.field_id(field_name, 'help')
+        end
+
+        def input_classes
+          args.fetch(:input_classes, [])
+        end
+
+        def input_data
+          args.fetch(:input_data, {})
+        end
+
+        def invalid_args
+          { form:, field_name: }
         end
 
         def field_aria
@@ -53,10 +99,33 @@ module SdrViewComponents
           end
         end
 
-        def error_aria
-          InvalidFeedbackSupport.arias_for(field_name:, form:).tap do |arias|
-            arias[:describedby] = merge_actions(arias[:describedby], help_text_id) if @help_text.present?
-          end
+        def label
+          args.fetch(:label, nil)
+        end
+
+        def label_args
+          { form:, field_name:, label_text: label, hidden_label:, classes: label_classes,
+            tooltip: }
+        end
+
+        def label_classes
+          args.fetch(:label_classes, [])
+        end
+
+        def mark_required
+          args.fetch(:mark_required, false)
+        end
+
+        def placeholder
+          args.fetch(:placeholder, nil)
+        end
+
+        def readonly
+          args.fetch(:readonly, false)
+        end
+
+        def required
+          args.fetch(:required, false)
         end
 
         def styles
@@ -65,16 +134,12 @@ module SdrViewComponents
           "max-width: #{width}px;"
         end
 
-        def container_classes
-          merge_classes(@container_classes)
+        def tooltip
+          args.fetch(:tooltip, nil)
         end
 
-        def field_classes
-          merge_classes(@input_classes)
-        end
-
-        def error_classes
-          merge_classes(@error_classes)
+        def width
+          args.fetch(:width, nil)
         end
 
         delegate :id, to: :form, prefix: true

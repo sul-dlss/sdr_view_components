@@ -12,6 +12,10 @@ module SdrViewComponents
         end
 
         attr_reader :value
+
+        def default_component
+          form.check_box field_name, component_args
+        end
       end
     end
   end
