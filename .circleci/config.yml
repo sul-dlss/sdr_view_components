@@ -1,0 +1,13 @@
+version: 2.1
+orbs:
+  ruby-rails: sul-dlss/ruby-rails@4.6.0
+workflows:
+  build:
+    jobs:
+      - ruby-rails/validate-api:
+          name: validate
+      - ruby-rails/lint:
+          name: lint
+      - ruby-rails/test-gem:
+          name: test
+          context: dlss
