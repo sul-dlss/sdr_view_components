@@ -10,13 +10,12 @@ gem 'debug'
 gem 'propshaft'
 gem 'puma'
 gem 'rspec-rails'
-gem 'rubocop', require: false
-gem 'rubocop-capybara', require: false
-gem 'rubocop-factory_bot', require: false
-gem 'rubocop-performance', require: false
-gem 'rubocop-rails', require: false
-gem 'rubocop-rake', require: false
-gem 'rubocop-rspec', require: false
-gem 'rubocop-rspec_rails', require: false
-gem 'simplecov', require: false
+gem 'rubocop'
+gem 'rubocop-capybara'
+gem 'rubocop-performance'
+gem 'rubocop-rails'
+gem 'rubocop-rake'
+gem 'rubocop-rspec'
+gem 'rubocop-rspec_rails'
+gem 'simplecov'
 gem 'sqlite3'
