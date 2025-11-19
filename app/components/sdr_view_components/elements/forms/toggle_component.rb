@@ -12,10 +12,14 @@ module SdrViewComponents
           Elements::Forms::ToggleOptionComponent.new(position: :right, **args)
         }
 
-        def initialize(**args)
+        def initialize(form:, field_name:, **args)
+          @form = form
+          @field_name = field_name
           args[:label_classes] = merge_classes('d-block', args[:label_classes])
           super
         end
+
+        attr_reader :form, :field_name
       end
     end
   end

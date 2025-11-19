@@ -11,8 +11,8 @@ RSpec.describe SdrViewComponents::Elements::Forms::ToggleComponent, type: :compo
   end
   let(:test_form) { form_class.new }
   let(:field_name) { 'test_toggle' }
-  let(:label) { 'Test Toggle' }
-  let(:component) { described_class.new(form:, field_name:, label:) }
+  let(:label_text) { 'Test Toggle' }
+  let(:component) { described_class.new(form:, field_name:, label_text:) }
 
   before do
     component.with_left_toggle_option(form:, field_name:, label: 'Type 1', value: 'type1', data: { test: 'test_data' })

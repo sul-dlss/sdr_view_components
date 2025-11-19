@@ -1,10 +1,10 @@
 <%= tag.div container_args do %>
   <div class="d-flex"> <%# Aligns label and tooltip %>
-    <%= render SdrViewComponents::Elements::Forms::LabelComponent.new(**label_args) %>
+    <%= render SdrViewComponents::Elements::Forms::LabelComponent.new(form:, field_name:, **label_args) %>
   </div>
   <div class="btn-group btn-group-toggle" role="group">
     <%= left_toggle_option %>
     <%= right_toggle_option %>
   </div>
-  <%= render SdrViewComponents::Elements::Forms::InvalidFeedbackComponent.new(**invalid_args) %>
+  <%= render SdrViewComponents::Elements::Forms::InvalidFeedbackComponent.new(form:, field_name:) %>
 <% end %>
