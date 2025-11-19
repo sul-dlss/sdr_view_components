@@ -5,29 +5,29 @@ module SdrViewComponents
     module Forms
       # Component for rendering a form label.
       class LabelComponent < BaseComponent
-        def initialize(form:, field_name:, label_text: nil, default_label_class: 'form-label', hidden_label: false, # rubocop:disable Metrics/ParameterLists
+        def initialize(form:, field_name:, text: nil, default_class: 'form-label', hidden: false, # rubocop:disable Metrics/ParameterLists
                        classes: [], tooltip: nil, caption: nil)
           @form = form
-          @label_text = label_text
+          @text = text
           @field_name = field_name
-          @hidden_label = hidden_label
-          @default_label_class = default_label_class
+          @hidden = hidden
+          @default_class = default_class
           @classes = classes
           @tooltip = tooltip
-          @captionfo = caption
+          @caption = caption
           super()
         end
 
         attr_reader :field_name, :form, :tooltip, :caption
 
-        def label_text
-          return field_name if @label_text.blank?
+        def text
+          return field_name if @text.blank?
 
-          @label_text
+          @text
         end
 
         def classes
-          merge_classes(@default_label_class, @classes, @hidden_label ? 'visually-hidden' : nil)
+          merge_classes(@default_class, @classes, @hidden ? 'visually-hidden' : nil)
         end
       end
     end

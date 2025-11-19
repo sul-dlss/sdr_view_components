@@ -1,6 +1,6 @@
 <%= form.label field_name, class: classes do %>
-  <%= content || label_text %>
+  <%= content || text %>
 <% end %>
 <%# This is outside the label so that clicking on it doesn't toggle some inputs like checkboxes. %>
-<%= render SdrViewComponents::Elements::TooltipComponent.new(target_label: label_text, tooltip:) %>
+<%= render SdrViewComponents::Elements::TooltipComponent.new(target_label: text, tooltip:) %>
 <%= tag.span { caption } if caption %>

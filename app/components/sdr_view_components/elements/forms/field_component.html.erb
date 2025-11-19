@@ -1,6 +1,0 @@
-<%= tag.div container_args do %>
-  <%= component %>
-  <%= render SdrViewComponents::Elements::Forms::LabelComponent.new(default_label_class: 'form-check-label', **label_args) %>
-  <%= render SdrViewComponents::Elements::Forms::HelpTextComponent.new(**help_text_args) %>
-  <%= render SdrViewComponents::Elements::Forms::InvalidFeedbackComponent.new(**invalid_args) %>
-<% end %>

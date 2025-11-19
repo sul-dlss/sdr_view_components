@@ -24,7 +24,7 @@ RSpec.describe SdrViewComponents::Elements::Forms::CheckboxComponent, type: :com
 
   context 'when label is hidden' do
     it 'creates field with hidden label' do
-      render_inline(described_class.new(form:, field_name:, hidden_label: true))
+      render_inline(described_class.new(form:, field_name:, label_hidden: true))
       expect(page).to have_css('label.form-check-label.visually-hidden', text: field_name)
     end
   end
@@ -67,7 +67,7 @@ RSpec.describe SdrViewComponents::Elements::Forms::CheckboxComponent, type: :com
 
   context 'when input classes are provided' do
     it 'creates field with classes' do
-      render_inline(described_class.new(form:, field_name:, input_classes: 'test-class'))
+      render_inline(described_class.new(form:, field_name:, input_class: 'test-class'))
       expect(page).to have_field(:test_checkbox, class: 'form-check-input test-class')
     end
   end

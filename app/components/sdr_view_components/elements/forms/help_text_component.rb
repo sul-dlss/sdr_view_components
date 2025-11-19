@@ -8,16 +8,16 @@ module SdrViewComponents
       class HelpTextComponent < BaseComponent
         # this component can take plain text via 'help_text' or a block (which can contain html)
         # it will render the help_text if provided, else it will render the block content
-        def initialize(id:, help_text: nil)
-          @help_text = help_text
+        def initialize(id:, text: nil)
+          @text = text
           @id = id
           super()
         end
 
-        attr_reader :help_text, :id
+        attr_reader :text, :id
 
         def render?
-          help_text.present? || content.present?
+          text.present? || content.present?
         end
       end
     end
