@@ -18,6 +18,9 @@ AllCops:
     - 'bin/**/*'
   NewCops: enable
 
+Layout/LineLength:
+  Max: 125
+
 Lint/EmptyBlock:
   Exclude:
     - 'config/routes.rb'
