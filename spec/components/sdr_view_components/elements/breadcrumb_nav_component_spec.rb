@@ -20,7 +20,7 @@ RSpec.describe SdrViewComponents::Elements::BreadcrumbNavComponent, type: :compo
     component.with_breadcrumb(text: 'Breadcrumb 2', active: true)
   end
 
-  it 'creates breadcrumb nav' do
+  it 'creates breadcrumb nav' do # rubocop:disable RSpec/ExampleLength
     render_inline(component)
     expect(page).to have_css('nav#breadcrumbs')
     expect(page).to have_css('li.breadcrumb-item', count: 4)
