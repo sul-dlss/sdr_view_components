@@ -16,7 +16,7 @@ module SdrViewComponents
       # The component must implement a `default_component` method in order
       # to render in the component slot of the FieldComponent.
       def default_component
-        SdrViewComponents::Forms::BasicCheckboxComponent.new(form:, field_name:, **input_args)
+        render SdrViewComponents::Forms::BasicCheckboxComponent.new(form:, field_name:, data:, **input_args)
       end
     end
   end

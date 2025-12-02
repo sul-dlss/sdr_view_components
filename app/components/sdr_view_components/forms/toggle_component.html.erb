@@ -1,4 +1,4 @@
-<%= tag.div container_args do %>
+<%= tag.div **container_args do %>
   <div class="d-flex"> <%# Aligns label and tooltip %>
     <%= render SdrViewComponents::Forms::LabelComponent.new(form:, field_name:, **label_args) %>
   </div>

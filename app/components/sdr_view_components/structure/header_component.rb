@@ -4,7 +4,7 @@ module SdrViewComponents
   module Structure
     # Component for rendering page header.
     class HeaderComponent < BaseComponent
-      def initialize(current_user_sunetid:, title:, subtitle:)
+      def initialize(current_user_sunetid:, title:, subtitle: nil)
         @current_user_sunetid = current_user_sunetid
         @title = title
         @subtitle = subtitle
