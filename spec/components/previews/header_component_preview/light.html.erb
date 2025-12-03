@@ -1,0 +1,33 @@
+<h2>Header Component - Light Variant</h2>
+<%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle') do |header| %>
+  <% header.with_primary_navigation_link do %>
+    <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Home', path: '#') %>
+  <% end %>
+  <% header.with_primary_navigation_link do %>
+    <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Logged in: amcollie-preview-dropdown') do |dropdown| %>
+      <% dropdown.with_link do %>
+        <%= link_to 'Logout', '/Shibboleth.sso/Logout', class: 'dropdown-item' %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% header.with_secondary_navigation_link do %>
+    <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Option', path: '/item1') %>
+  <% end %>
+<% end %>
+
+<h2>Header Component - White Variant</h2>
+<%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle', variant: :white) do |header| %>
+  <% header.with_primary_navigation_link do %>
+    <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Home', path: '#') %>
+  <% end %>
+  <% header.with_primary_navigation_link do %>
+    <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Logged in: amcollie-preview-dropdown') do |dropdown| %>
+      <% dropdown.with_link do %>
+        <%= link_to 'Logout', '/Shibboleth.sso/Logout', class: 'dropdown-item' %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% header.with_secondary_navigation_link do %>
+    <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Option', path: '/item1') %>
+  <% end %>
+<% end %>

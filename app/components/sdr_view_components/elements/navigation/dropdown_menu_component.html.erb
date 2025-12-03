@@ -1,0 +1,13 @@
+<li class="nav-item dropdown">
+  <button
+    class="nav-link logout-dropdown dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-expanded="false">
+    <%= text %>
+  </button>
+  <ul class="dropdown-menu">
+    <%= links.map do |link| %>
+      <li><%= link %></li>
+    <% end %>
+  </ul>
+</li>
