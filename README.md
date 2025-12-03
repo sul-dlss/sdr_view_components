@@ -49,6 +49,16 @@ Supported header variations are `:dark`, `:light`, and `:white` (default is `:li
 <% end %>
 ```
 
+The `:dark` variation supports providing an rgb value via the `rgb_color_str` param in order to override the default dark background, for example:
+
+```
+<%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle', variant: :dark, rgb_color_str: '1, 104, 149') do |header| %>
+
+...
+
+<% end %>
+```
+
 ### General usage:
 
 ```

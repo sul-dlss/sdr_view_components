@@ -18,14 +18,15 @@ module SdrViewComponents
         dark: 'bg-dark sky-dark'
       }.freeze
 
-      def initialize(title:, subtitle: nil, variant: :light)
+      def initialize(title:, subtitle: nil, variant: :light, background_color: nil)
         @title = title
         @subtitle = subtitle
         @variant = variant
+        @background_color = background_color
         super()
       end
 
-      attr_reader :title, :subtitle, :variant
+      attr_reader :title, :subtitle, :variant, :background_color
 
       def masthead_classes
         merge_classes('masthead', VARIANT_MASTHEAD_CLASS[variant])
@@ -36,9 +37,9 @@ module SdrViewComponents
       end
 
       def style_override
-        return if variant == :dark
+        return render SdrViewComponents::Structure::StyleOverrideLightComponent.new unless variant == :dark
 
-        render SdrViewComponents::Structure::StyleOverrideLightComponent.new
+        render SdrViewComponents::Structure::StyleOverrideDarkComponent.new(background_color:)
       end
     end
   end
