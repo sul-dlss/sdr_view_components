@@ -37,7 +37,7 @@ RSpec.describe SdrViewComponents::Elements::AlertComponent, type: :component do
     it 'does not render' do
       render_inline(described_class.new(title: '').with_content(''))
 
-      expect(page).not_to have_css('.alert')
+      expect(page).to have_no_css('.alert')
     end
   end
 end

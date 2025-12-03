@@ -5,10 +5,8 @@ source 'https://rubygems.org'
 # Specify your gem's dependencies in sul-view-components.gemspec.
 gemspec
 
-gem 'activemodel'
 gem 'capybara'
 gem 'debug'
-gem 'panolint'
 gem 'propshaft'
 gem 'puma'
 gem 'rspec-rails'

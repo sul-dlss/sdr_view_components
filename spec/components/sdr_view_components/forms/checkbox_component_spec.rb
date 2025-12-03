@@ -17,8 +17,8 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
     render_inline(described_class.new(form:, field_name:))
     expect(page).to have_css('label.form-check-label:not(.visually-hidden)', text: field_name)
     expect(page).to have_css('input.form-check-input[type="checkbox"]:not(.is-invalid)')
-    expect(page).not_to have_css('p.form-text')
-    expect(page).not_to have_css('div.invalid-feedback.is-invalid')
+    expect(page).to have_no_css('p.form-text')
+    expect(page).to have_no_css('div.invalid-feedback.is-invalid')
     expect(page.find('input.form-check-input[type="checkbox"]')).not_to be_checked
   end
 

@@ -50,7 +50,7 @@ RSpec.describe SdrViewComponents::Forms::ButtonComponent, type: :component do
     it 'renders the button form without-data-turbo-frame' do
       render_inline(described_class.new(link:, label: 'Button form', top: false))
       expect(page).to have_css('form')
-      expect(page).not_to have_css('form[data-turbo-frame="_top"]')
+      expect(page).to have_no_css('form[data-turbo-frame="_top"]')
     end
   end
 

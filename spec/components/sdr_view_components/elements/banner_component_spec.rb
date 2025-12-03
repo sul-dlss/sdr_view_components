@@ -6,8 +6,8 @@ RSpec.describe SdrViewComponents::Elements::BannerComponent, type: :component do
   it 'renders the banner' do
     render_inline(described_class.new)
     expect(page).to have_css(".alert.alert-note.banner[role='banner']")
-    expect(page).not_to have_css('.banner-header')
-    expect(page).not_to have_css('.banner-body')
+    expect(page).to have_no_css('.banner-header')
+    expect(page).to have_no_css('.banner-body')
     expect(page).to have_css('div.bi.bi-exclamation-circle-fill[role="img"][aria-label="note banner icon"]')
   end
 
