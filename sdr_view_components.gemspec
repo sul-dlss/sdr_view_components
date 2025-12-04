@@ -5,18 +5,12 @@ Gem::Specification.new do |spec|
   spec.version     = SdrViewComponents::VERSION
   spec.authors     = ['Aaron Collier']
   spec.email       = ['aaron.collier@stanford.edu']
-  spec.homepage    = 'https://github.com/sul-dlss-labs/sdr-view_components'
+  spec.homepage    = 'https://github.com/sul-dlss/sdr_view_components'
   spec.summary     = 'Rails gem for providing SDR-specific ViewComponents.'
   spec.description = 'Rails gem for providing SDR-specific ViewComponents.'
-  spec.license     = 'MIT'
-
-  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the "allowed_push_host"
-  # to allow pushing to a single host or delete this section to allow pushing to any host.
-  spec.metadata['allowed_push_host'] = "TODO: Set to 'http://mygemserver.com'"
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/sul-dlss-labs/sdr-view_components'
-  spec.metadata['changelog_uri'] = "TODO: Put your gem's CHANGELOG.md URL here."
+  spec.metadata['source_code_uri'] = 'https://github.com/sul-dlss/sdr_view_components'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   spec.files = Dir.chdir(File.expand_path(__dir__)) do
