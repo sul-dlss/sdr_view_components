@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/github/sul-dlss/sdr_view_components/graph/badge.svg?token=VGFL92KY3E)](https://codecov.io/github/sul-dlss/sdr_view_components)
+
 # SdrViewComponents
 
 A rails gem to provide reusable view components used throughout the SDR applications and implement
