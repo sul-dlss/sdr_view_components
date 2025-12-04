@@ -29,6 +29,4 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'rails', '~> 8.0'
   spec.add_dependency 'view_component'
   spec.add_dependency 'zeitwerk'
-
-  spec.add_development_dependency 'bundler', '~> 2.0'
 end
