@@ -19,21 +19,23 @@ module SdrViewComponents
       }.freeze
 
       # param title [String] The main application title text.
-      # param subtitle [String, nil] An optional subtitle text.
-      # param variant [Symbol] One of :light, :dark, :white - determines color scheme.
-      # param background_color [String, nil] Optional RGB color value for background (i.e. '1, 104, 149').
-      #                                      Used only when variant is :dark.
-      # param sul_logo [String, nil] Optional URL for SUL logo image. (polychrome, stacked-lg, stacked-mobile)
-      def initialize(title:, subtitle: nil, variant: :light, background_color: nil, sul_logo: nil)
+      # Additional supported params:
+      #   param subtitle [String, nil] An optional subtitle text.
+      #   param variant [Symbol] One of :light, :dark, :white - determines color scheme.
+      #   param background_color [String, nil] Optional RGB color value for background (i.e. '1, 104, 149').
+      #                                        Used only when variant is :dark.
+      #   param sul_logo [String, nil] Optional URL for SUL logo image. (polychrome, stacked-lg, stacked-mobile)
+      def initialize(title:, **args)
         @title = title
-        @subtitle = subtitle
-        @variant = variant
-        @background_color = background_color
-        @sul_logo = sul_logo
+        @subtitle = args[:subtitle]
+        @variant = args.fetch(:variant, :light)
+        @background_color = args[:background_color]
+        @rosette = args.fetch(:rosette, true)
+        @sul_logo = args[:sul_logo]
         super()
       end
 
-      attr_reader :variant, :background_color
+      attr_reader :background_color, :rosette, :variant
 
       def masthead_classes
         merge_classes('masthead', VARIANT_MASTHEAD_CLASS[variant])

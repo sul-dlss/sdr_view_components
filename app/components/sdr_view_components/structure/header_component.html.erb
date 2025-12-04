@@ -35,7 +35,9 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-end pt-3 pb-1 pb-md-3 gap-2">
         <div class="d-flex align-items-end gap-2 flex-grow-1">
-          <span class="rosette-logo me-1 align-self-start flex-shrink-0" aria-hidden></span>
+          <% if rosette %>
+            <%= tag.span class: 'rosette-logo me-1 align-self-start flex-shrink-0', aria: { hidden: 'true' } %>
+          <% end %>
           <div class="me-1 flex-grow-1">
             <%= title %>
             <%= subtitle %>
