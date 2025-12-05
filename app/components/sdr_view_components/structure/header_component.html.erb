@@ -1,4 +1,4 @@
-<%= style_override %>
+<%= render style_override_component %>
 
 <header>
   <div class="identity-bar">
@@ -8,7 +8,7 @@
   </div>
   <%= tag.nav class: navbar_classes do %>
     <div class="container">
-      <%= sul_logo %>
+      <%= render SdrViewComponents::Structure::HeaderSulLogoComponent.new(sul_logo:) %>
       <button
         class="navbar-toggler navbar-toggler-right collapsed"
         type="button"
@@ -35,12 +35,10 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-end pt-3 pb-1 pb-md-3 gap-2">
         <div class="d-flex align-items-end gap-2 flex-grow-1">
-          <% if rosette %>
-            <%= tag.span class: 'rosette-logo me-1 align-self-start flex-shrink-0', aria: { hidden: 'true' } %>
-          <% end %>
+          <%= render SdrViewComponents::Structure::HeaderRosetteComponent.new if rosette %>
           <div class="me-1 flex-grow-1">
-            <%= title %>
-            <%= subtitle %>
+            <%= render SdrViewComponents::Structure::HeaderTitleComponent.new(title:) %>
+            <%= render SdrViewComponents::Structure::HeaderSubtitleComponent.new(subtitle:) %>
           </div>
         </div>
         <div class="<%= navbar_classes %> ms-md-auto">

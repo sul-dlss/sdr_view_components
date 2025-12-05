@@ -18,24 +18,24 @@ module SdrViewComponents
         dark: 'bg-dark sky-dark'
       }.freeze
 
-      # param title [String] The main application title text.
-      # Additional supported params:
-      #   param subtitle [String, nil] An optional subtitle text.
-      #   param variant [Symbol] One of :light, :dark, :white - determines color scheme.
-      #   param background_color [String, nil] Optional RGB color value for background (i.e. '1, 104, 149').
-      #                                        Used only when variant is :dark.
-      #   param sul_logo [String, nil] Optional URL for SUL logo image. (polychrome, stacked-lg, stacked-mobile)
-      def initialize(title:, **args)
+      # param title [String] The main application title text (Required).
+      # param subtitle [String, nil] An optional subtitle text.
+      # param variant [Symbol] One of :light, :dark, :white - determines color scheme.
+      # param background_color [String, nil] Optional RGB color value for background (i.e. '1, 104, 149').
+      #                                      Used only when variant is :dark.
+      # param rosette [Boolean] Whether to show the rosette logo.
+      # param sul_logo [String, nil] Optional URL for SUL logo image. (polychrome, stacked-lg, stacked-mobile)
+      def initialize(title:, subtitle: nil, variant: :light, background_color: nil, rosette: true, sul_logo: nil) # rubocop:disable Metrics/ParameterLists
         @title = title
-        @subtitle = args[:subtitle]
-        @variant = args.fetch(:variant, :light)
-        @background_color = args[:background_color]
-        @rosette = args.fetch(:rosette, true)
-        @sul_logo = args[:sul_logo]
+        @subtitle = subtitle
+        @variant = variant
+        @background_color = background_color
+        @rosette = rosette
+        @sul_logo = sul_logo
         super()
       end
 
-      attr_reader :background_color, :rosette, :variant
+      attr_reader :background_color, :rosette, :subtitle, :sul_logo, :title, :variant
 
       def masthead_classes
         merge_classes('masthead', VARIANT_MASTHEAD_CLASS[variant])
@@ -45,28 +45,10 @@ module SdrViewComponents
         merge_classes('navbar navbar-expand-md', VARIANT_NAVBAR_CLASS[variant])
       end
 
-      def style_override
-        return render SdrViewComponents::Structure::StyleOverrideLightComponent.new unless variant == :dark
+      def style_override_component
+        return SdrViewComponents::Structure::StyleOverrideLightComponent.new unless variant == :dark
 
-        render SdrViewComponents::Structure::StyleOverrideDarkComponent.new(background_color:)
-      end
-
-      def subtitle
-        return if @subtitle.blank?
-
-        tag.span @subtitle, class: 'h4 d-block my-1'
-      end
-
-      def sul_logo
-        logo_classes = merge_classes('mb-0 navbar-brand navbar-logo', @sul_logo)
-
-        link_to 'Stanford University Libraries', 'https://library.stanford.edu', class: logo_classes
-      end
-
-      def title
-        tag.div(class: 'h1 my-0') do
-          link_to @title, '/'
-        end
+        SdrViewComponents::Structure::StyleOverrideDarkComponent.new(background_color:)
       end
     end
   end

@@ -3,6 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe SdrViewComponents::Structure::HeaderComponent, type: :component do
+  it 'raises ArgumentError when title is missing' do
+    expect { render_inline(described_class.new) }.to raise_error(ArgumentError, 'missing keyword: :title')
+  end
+
   it 'renders title and subtitle' do # rubocop:disable RSpec/ExampleLength
     render_inline(described_class.new(title: 'Test Header', subtitle: 'Test Subtitle'))
 
