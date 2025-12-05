@@ -41,8 +41,12 @@ module SdrViewComponents
         merge_classes('masthead', VARIANT_MASTHEAD_CLASS[variant])
       end
 
-      def navbar_classes
+      def collapsible_navbar_classes
         merge_classes('navbar navbar-expand-md', VARIANT_NAVBAR_CLASS[variant])
+      end
+
+      def navbar_classes
+        merge_classes('navbars ms-md-auto', VARIANT_NAVBAR_CLASS[variant])
       end
 
       def style_override_component
