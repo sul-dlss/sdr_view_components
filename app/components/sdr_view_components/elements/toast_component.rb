@@ -14,7 +14,7 @@ module SdrViewComponents
 
       attr_reader :title, :text, :close_text, :variant
 
-      def toast_class
+      def toast_body_classes
         merge_classes([background_color], %w[toast-body text-white])
       end
 
