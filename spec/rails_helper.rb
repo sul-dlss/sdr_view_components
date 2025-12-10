@@ -17,6 +17,9 @@ require 'view_component/test_helpers'
 # Load support files
 Dir[File.join(__dir__, 'support/**/*.rb')].each { |f| require f }
 
+# Use Nokogiri's HTML5 parser
+Capybara.use_html5_parsing = true
+
 RSpec.configure do |config|
   config.include ViewComponent::TestHelpers, type: :component
   config.infer_spec_type_from_file_location!
