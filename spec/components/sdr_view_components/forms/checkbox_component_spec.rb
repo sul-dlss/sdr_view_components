@@ -55,7 +55,7 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
 
   context 'when data is provided' do
     it 'creates field with data' do
-      render_inline(described_class.new(form:, field_name:, data: { test: 'test_data' }))
+      render_inline(described_class.new(form:, field_name:, input_data: { test: 'test_data' }))
       expect(page).to have_css('input[data-test="test_data"]')
     end
   end

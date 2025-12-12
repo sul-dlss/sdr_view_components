@@ -63,6 +63,51 @@ The `:dark` variation supports providing an rgb value via the `background_color`
 
 By default, the SUL Rosette is included in the header, this can be disabled by setting `rosette: false` in the parameter list when instantiating the header.
 
+### Form components
+
+SdrViewComponents provides a wrapper for several [ActionView::Helper::Tags](https://api.rubyonrails.org/v8.1.1/classes/ActionView/Helpers/Tags.html).
+
+Currently supported tags:
+- Checkbox
+- File
+- RadioButton
+- TextArea
+- TextField
+
+#### Composed form components
+
+SdrViewComponents provides fully composed (label, help text, and validation) instances of the above components as:
+
+- SdrViewComponents::Forms::CheckboxComponent
+- SdrViewComponents::Forms::FileComponent
+- SdrViewComponents::Forms::RadioButtonComponent
+- SdrViewComponents::Forms::TextAreaComponent
+- SdrViewComponents::Forms::TextFieldComponent
+
+At a minimum, each of these components must be provided wih the `form:` and `field_name:` parameters. Additionally, you can provide prefixed parameters that will be passed the the individual parts of the components:
+
+- `containter_`: is used to pass arguments to the surrounding `div` for the component.
+- `input_`: is used to pass arguments to the actual input component.
+- `label_`: is used to pass arguments to the label for the component.
+- `help_`: is used to pass arguments to the help text available for the component.
+- `error_`: is used to pass arguments to the validation output of the component.
+
+TODO:
+- Outline the supported params for each prefix
+- Provide an example instantiation and output
+
+#### Basic form components
+
+Each of the supported components above uses the provided "basic" components:
+
+- SdrViewComponents::Forms::BasicCheckboxComponent
+- SdrViewComponents::Forms::BasicFileComponent
+- SdrViewComponents::Forms::BasicRadioButtonComponent
+- SdrViewComponents::Forms::BasicTextAreaComponent
+- SdrViewComponents::Forms::BasicTextFieldComponent
+
+At a minimum, each of these components must be provided wih the `form:` and `field_name:` parameters. Additionally, you can provide additional parameters that will be passed to the standard ActionView::Helpers::Tag.
+
 ### General usage:
 
 ```
