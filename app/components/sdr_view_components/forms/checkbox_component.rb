@@ -11,7 +11,7 @@ module SdrViewComponents
         super
       end
 
-      def component
+      def input_component
         SdrViewComponents::Forms::BasicCheckboxComponent.new(form:, field_name:, **input_args)
       end
     end

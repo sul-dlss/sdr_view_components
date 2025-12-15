@@ -86,7 +86,7 @@ SdrViewComponents provides fully composed (label, help text, and validation) ins
 
 At a minimum, each of these components must be provided wih the `form:` and `field_name:` parameters. Additionally, you can provide prefixed parameters that will be passed the the individual parts of the components:
 
-- `containter_`: is used to pass arguments to the surrounding `div` for the component.
+- `container_`: is used to pass arguments to the surrounding `div` for the component.
 - `input_`: is used to pass arguments to the actual input component.
 - `label_`: is used to pass arguments to the label for the component.
 - `help_`: is used to pass arguments to the help text available for the component.

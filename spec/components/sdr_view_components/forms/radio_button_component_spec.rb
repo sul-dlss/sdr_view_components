@@ -3,17 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component do
-  let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
-  let(:field_name) { :test_radio_button }
-  let(:form_class) do
-    Class.new(ApplicationForm) do
-      attribute :test_radio_button, :string
-    end
-  end
-  let(:test_form) { form_class.new(test_radio_button:) }
-  let(:test_radio_button) { 'option1' }
+  let(:form) { build_form(test_model) }
+  let(:test_model) { build_model(test_string_field:) }
+  let(:test_string_field) { 'option1' }
+  let(:field_name) { :test_string_field }
 
-  it 'creates field with label' do # rubocop:disable RSpec/ExampleLength
+  it 'creates field with label' do
     render_inline(described_class.new(form:, field_name:, input_value: nil))
     expect(page).to have_css('label.form-check-label:not(.visually-hidden)', text: field_name)
     expect(page).to have_css('input.form-check-input[type="radio"]:not(.is-invalid)')
@@ -46,7 +41,7 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
 
   context 'when field has an error' do
     before do
-      test_form.errors.add(field_name, 'is required')
+      test_model.errors.add(field_name, 'is required')
     end
 
     it 'creates field with invalid feedback' do
@@ -66,7 +61,7 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
   context 'when input classes are provided' do
     it 'creates field with classes' do
       render_inline(described_class.new(form:, field_name:, input_value: nil, input_class: 'test-class'))
-      expect(page).to have_field(:test_radio_button, class: 'form-check-input test-class')
+      expect(page).to have_field(:test_string_field, class: 'form-check-input test-class')
     end
   end
 end

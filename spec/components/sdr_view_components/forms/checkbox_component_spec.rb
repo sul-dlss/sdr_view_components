@@ -8,7 +8,7 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
   let(:field_name) { :test_boolean_field }
   let(:test_boolean_field) { false }
 
-  it 'creates field with label' do # rubocop:disable RSpec/ExampleLength
+  it 'creates field with label' do
     render_inline(described_class.new(form:, field_name:))
     expect(page).to have_css('label.form-check-label:not(.visually-hidden)', text: field_name)
     expect(page).to have_css('input.form-check-input[type="checkbox"]:not(.is-invalid)')

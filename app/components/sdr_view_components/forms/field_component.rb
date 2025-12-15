@@ -12,8 +12,8 @@ module SdrViewComponents
       attr_reader :args
 
       # Any component that inherits from FieldComponent must implement this method
-      # or provide it's own template.
-      def component
+      # or provide its own template.
+      def input_component
         raise NotImplementedError
       end
 

@@ -5,13 +5,12 @@ module SdrViewComponents
     # Component for form text field
     class TextFieldComponent < FieldComponent
       def initialize(**args)
-        args[:container_class] = merge_classes('form-text', args[:container_class])
-        args[:input_class] = merge_classes('form-text-input', args[:input_class])
-        args[:label_default_class] = merge_classes('form-text-label', args[:input_class])
+        args[:container_class] = merge_classes('field-container', args[:container_class])
+        args[:input_class] = merge_classes('form-control', args[:input_class])
         super
       end
 
-      def component
+      def input_component
         SdrViewComponents::Forms::BasicTextFieldComponent.new(form:, field_name:, **input_args)
       end
     end
