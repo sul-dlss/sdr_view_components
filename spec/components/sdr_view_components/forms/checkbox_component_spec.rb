@@ -3,15 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
-  let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
-  let(:field_name) { :test_checkbox }
-  let(:form_class) do
-    Class.new(ApplicationForm) do
-      attribute :test_checkbox, :boolean
-    end
-  end
-  let(:test_form) { form_class.new(test_checkbox:) }
-  let(:test_checkbox) { false }
+  let(:form) { build_form(test_model) }
+  let(:test_model) { build_model(test_boolean_field:) }
+  let(:field_name) { :test_boolean_field }
+  let(:test_boolean_field) { false }
 
   it 'creates field with label' do # rubocop:disable RSpec/ExampleLength
     render_inline(described_class.new(form:, field_name:))
@@ -30,7 +25,7 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
   end
 
   context 'when value of field name is true' do
-    let(:test_checkbox) { true }
+    let(:test_boolean_field) { true }
 
     it 'renders with the checkbox already checked' do
       render_inline(described_class.new(form:, field_name:))
@@ -48,7 +43,7 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
 
   context 'when field has an error' do
     before do
-      test_form.errors.add(field_name, 'is required')
+      test_model.errors.add(field_name, 'is required')
     end
 
     it 'creates field with invalid feedback' do
@@ -68,7 +63,7 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
   context 'when input classes are provided' do
     it 'creates field with classes' do
       render_inline(described_class.new(form:, field_name:, input_class: 'test-class'))
-      expect(page).to have_field(:test_checkbox, class: 'form-check-input test-class')
+      expect(page).to have_field(:test_boolean_field, class: 'form-check-input test-class')
     end
   end
 end

@@ -2,15 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do # rubocop:disable RSpec/MultipleMemoizedHelpers
-  let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
-  let(:form_class) do
-    Class.new(ApplicationForm) do
-      attribute :test_toggle, :boolean
-    end
-  end
-  let(:test_form) { form_class.new }
-  let(:field_name) { 'test_toggle' }
+RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do
+  let(:form) { build_form(test_model) }
+  let(:test_model) { build_model }
+  let(:field_name) { :test_boolean_field }
   let(:label_text) { 'Test Toggle' }
   let(:component) { described_class.new(form:, field_name:, label_text:) }
 

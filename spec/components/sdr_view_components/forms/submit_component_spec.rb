@@ -3,9 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe SdrViewComponents::Forms::SubmitComponent, type: :component do
-  let(:form) { ActionView::Helpers::FormBuilder.new(nil, test_form, vc_test_view_context, {}) }
-  let(:form_class) { Class.new(ApplicationForm) }
-  let(:test_form) { form_class.new }
+  let(:form) { build_form(test_model) }
+  let(:test_model) { build_model }
 
   context 'with a label' do
     it 'renders the submit button' do
