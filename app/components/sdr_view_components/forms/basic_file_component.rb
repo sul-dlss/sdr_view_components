@@ -2,8 +2,8 @@
 
 module SdrViewComponents
   module Forms
-    # Component for form checkbox field
-    class BasicCheckboxComponent < BaseComponent
+    # Component for form file field
+    class BasicFileComponent < BaseComponent
       def initialize(form:, field_name:, **args)
         @form = form
         @field_name = field_name
@@ -14,7 +14,7 @@ module SdrViewComponents
       attr_reader :args, :form, :field_name
 
       def call
-        form.check_box field_name, **args
+        form.file_field field_name, **args
       end
     end
   end

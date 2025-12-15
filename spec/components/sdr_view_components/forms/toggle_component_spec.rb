@@ -15,7 +15,7 @@ RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do
                                        data: { test: 'more_test_data' })
   end
 
-  it 'creates toggle field with label' do # rubocop:disable RSpec/ExampleLength
+  it 'creates toggle field with label' do
     render_inline(component)
     expect(page).to have_css('label.form-label:not(.visually-hidden)', text: 'Test Toggle')
     expect(page).to have_css('input[type="radio"]:not(.is-invalid)')

@@ -1,6 +1,6 @@
-<%= tag.div container_args do %>
-  <%= component %>
+<%= tag.div **container_args do %>
   <%= render SdrViewComponents::Forms::LabelComponent.new(form:, field_name:, **label_args) %>
   <%= render SdrViewComponents::Forms::HelpTextComponent.new(**help_text_args) %>
-  <%= render SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:) %>
+  <%= render input_component %>
+  <%= render SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:, **error_args) %>
 <% end %>

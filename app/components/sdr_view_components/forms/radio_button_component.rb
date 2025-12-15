@@ -2,8 +2,8 @@
 
 module SdrViewComponents
   module Forms
-    # Component for form checkbox field
-    class CheckboxComponent < FieldComponent
+    # Component for form radio button field
+    class RadioButtonComponent < FieldComponent
       def initialize(**args)
         args[:container_class] = merge_classes('form-check', args[:container_class])
         args[:input_class] = merge_classes('form-check-input', args[:input_class])
@@ -12,7 +12,7 @@ module SdrViewComponents
       end
 
       def input_component
-        SdrViewComponents::Forms::BasicCheckboxComponent.new(form:, field_name:, **input_args)
+        SdrViewComponents::Forms::BasicRadioButtonComponent.new(form:, field_name:, **input_args)
       end
     end
   end
