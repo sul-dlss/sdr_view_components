@@ -4,7 +4,7 @@ module SdrViewComponents
   module Elements
     # Component for rendering a toast element.
     class ToastComponent < BaseComponent
-      def initialize(title:, text:, close_text: nil, variant: :black)
+      def initialize(title:, text: nil, close_text: nil, variant: :black)
         @title = title
         @text = text
         @close_text = close_text
