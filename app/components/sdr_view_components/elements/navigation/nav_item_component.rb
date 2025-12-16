@@ -5,7 +5,7 @@ module SdrViewComponents
     module Navigation
       # Component for navigation item link.
       class NavItemComponent < BaseComponent
-        def initialize(text:, path:, data: {})
+        def initialize(text:, path: nil, data: {})
           @text = text
           @path = path
           @data = data
@@ -16,7 +16,11 @@ module SdrViewComponents
 
         def call
           tag.li class: 'nav-item' do
-            link_to text, path, class: 'nav-link', data:
+            if path.present?
+              link_to text, path, class: 'nav-link', data:
+            else
+              tag.span text, class: 'nav-link'
+            end
           end
         end
       end
