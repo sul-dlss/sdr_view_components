@@ -62,7 +62,7 @@ RSpec.describe SdrViewComponents::Forms::CheckboxComponent, type: :component do
 
   context 'when input classes are provided' do
     it 'creates field with classes' do
-      render_inline(described_class.new(form:, field_name:, input_class: 'test-class'))
+      render_inline(described_class.new(form:, field_name:, input_classes: 'test-class'))
       expect(page).to have_field(:test_boolean_field, class: 'form-check-input test-class')
     end
   end

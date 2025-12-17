@@ -9,7 +9,7 @@ RSpec.describe SdrViewComponents::Forms::TextFieldComponent, type: :component do
   let(:field_name) { :test_string_field }
 
   it 'creates field with label' do
-    render_inline(described_class.new(form:, field_name:))
+    render_inline(described_class.new(form:, field_name:, container_classes: 'field-container'))
     expect(page).to have_css('label.form-label:not(.visually-hidden)', text: field_name)
     expect(page).to have_css('input.form-control[type="text"]:not(.is-invalid)')
     expect(page).to have_no_css('p.form-text')
@@ -41,7 +41,7 @@ RSpec.describe SdrViewComponents::Forms::TextFieldComponent, type: :component do
 
   context 'when the field container hidden is set to true' do
     it 'renders the containing div as hidden' do
-      render_inline(described_class.new(form:, field_name:, container_hidden: true))
+      render_inline(described_class.new(form:, field_name:, container_hidden: true, container_classes: 'field-container'))
       expect(page).to have_css('div.field-container', visible: :hidden)
     end
   end
@@ -84,6 +84,18 @@ RSpec.describe SdrViewComponents::Forms::TextFieldComponent, type: :component do
     it 'creates input with aria-required attribute' do
       render_inline(described_class.new(form:, field_name:, mark_required: true))
       expect(page).to have_css('input[aria-required="true"]')
+    end
+  end
+
+  context 'with additional container content' do
+    it 'renders the additional content inside the container' do
+      render_inline(described_class.new(form:, field_name:, container_classes: 'field-container')) do |component|
+        component.with_additional_container_content do
+          "<span class='additional-content'>Extra Info</span>".html_safe
+        end
+      end
+
+      expect(page).to have_css('div.field-container span.additional-content', text: 'Extra Info')
     end
   end
 end

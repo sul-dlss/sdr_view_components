@@ -5,9 +5,8 @@ module SdrViewComponents
     # Component for form checkbox field
     class CheckboxComponent < FieldComponent
       def initialize(**args)
-        args[:container_class] = merge_classes('form-check', args[:container_class])
-        args[:input_class] = merge_classes('form-check-input', args[:input_class])
-        args[:label_default_class] = merge_classes('form-check-label', args[:input_class])
+        args[:container_classes] = merge_classes('form-check', args[:container_classes])
+        args[:label_default_class] = 'form-check-label'
         super
       end
 
