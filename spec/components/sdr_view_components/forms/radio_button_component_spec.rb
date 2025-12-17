@@ -9,9 +9,10 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
   let(:field_name) { :test_string_field }
 
   it 'creates field with label' do
-    render_inline(described_class.new(form:, field_name:, input_value: nil))
-    expect(page).to have_css('label.form-check-label:not(.visually-hidden)', text: field_name)
-    expect(page).to have_css('input.form-check-input[type="radio"]:not(.is-invalid)')
+    render_inline(described_class.new(form:, field_name:, input_value: 'value1'))
+    expect(page).to have_css('label.form-check-label[for="test_string_field_value1"]:not(.visually-hidden)',
+                             text: field_name)
+    expect(page).to have_css('input.form-check-input[type="radio"]#test_string_field_value1:not(.is-invalid)')
     expect(page).to have_no_css('p.form-text')
     expect(page).to have_no_css('div.invalid-feedback.is-invalid')
     expect(page.find('input.form-check-input[type="radio"]')).not_to be_checked
@@ -60,7 +61,7 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
 
   context 'when input classes are provided' do
     it 'creates field with classes' do
-      render_inline(described_class.new(form:, field_name:, input_value: nil, input_class: 'test-class'))
+      render_inline(described_class.new(form:, field_name:, input_value: nil, input_classes: 'test-class'))
       expect(page).to have_field(:test_string_field, class: 'form-check-input test-class')
     end
   end

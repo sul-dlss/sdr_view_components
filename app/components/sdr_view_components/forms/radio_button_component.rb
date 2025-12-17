@@ -5,14 +5,24 @@ module SdrViewComponents
     # Component for form radio button field
     class RadioButtonComponent < FieldComponent
       def initialize(**args)
-        args[:container_class] = merge_classes('form-check', args[:container_class])
-        args[:input_class] = merge_classes('form-check-input', args[:input_class])
-        args[:label_default_class] = merge_classes('form-check-label', args[:input_class])
+        args[:container_classes] = merge_classes('form-check', args[:container_classes])
+        args[:label_default_class] = 'form-check-label'
         super
       end
 
       def input_component
         SdrViewComponents::Forms::BasicRadioButtonComponent.new(form:, field_name:, **input_args)
+      end
+
+      def label_field_name
+        "#{sanitize(field_name)}_#{sanitize(input_args[:value])}"
+      end
+
+      private
+
+      # From https://github.com/rails/rails/blob/main/actionview/lib/action_view/helpers/form_tag_helper.rb
+      def sanitize(value)
+        value.to_s.delete(']').tr('^-a-zA-Z0-9:.', '_')
       end
     end
   end

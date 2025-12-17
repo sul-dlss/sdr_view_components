@@ -3,19 +3,20 @@
 module SdrViewComponents
   module Forms
     # Component for form radio button field
-    class BasicRadioButtonComponent < BaseComponent
-      def initialize(form:, field_name:, value:, **args)
-        @form = form
-        @field_name = field_name
+    class BasicRadioButtonComponent < BasicComponent
+      def initialize(form:, field_name:, value:, classes: [], **args)
         @value = value
-        @args = args
-        super()
+        super(form:, field_name:, classes:, **args)
       end
 
-      attr_reader :args, :form, :field_name, :value
+      attr_reader :value
 
       def call
-        form.radio_button field_name, value, **args
+        form.radio_button field_name, value, class: classes, **args
+      end
+
+      def classes
+        merge_classes('form-check-input', @classes)
       end
     end
   end

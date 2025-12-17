@@ -3,18 +3,13 @@
 module SdrViewComponents
   module Forms
     # Component for form checkbox field
-    class BasicCheckboxComponent < BaseComponent
-      def initialize(form:, field_name:, **args)
-        @form = form
-        @field_name = field_name
-        @args = args
-        super()
+    class BasicCheckboxComponent < BasicComponent
+      def call
+        form.check_box field_name, class: classes, **args
       end
 
-      attr_reader :args, :form, :field_name
-
-      def call
-        form.check_box field_name, **args
+      def classes
+        merge_classes('form-check-input', @classes)
       end
     end
   end

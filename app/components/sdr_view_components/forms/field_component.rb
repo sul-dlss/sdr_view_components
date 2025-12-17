@@ -4,12 +4,17 @@ module SdrViewComponents
   module Forms
     # Base component for all form fields.
     class FieldComponent < BaseComponent
-      def initialize(**args)
+      renders_one :additional_container_content
+
+      def initialize(form:, field_name:, container_classes: [], **args)
+        @form = form
+        @field_name = field_name
+        @container_classes = container_classes
         @args = args
         super()
       end
 
-      attr_reader :args
+      attr_reader :form, :args, :field_name
 
       # Any component that inherits from FieldComponent must implement this method
       # or provide its own template.
@@ -57,15 +62,16 @@ module SdrViewComponents
       def label_args
         args_for(args:, prefix: 'label_')
       end
+
+      # Subclasses may override, e.g., for radio buttons.
+      def label_field_name
+        field_name
+      end
+
+      def container_classes
+        merge_classes(@container_classes)
+      end
       ##########################################################################
-
-      def field_name
-        @field_name ||= args.delete(:field_name)
-      end
-
-      def form
-        @form ||= args.delete(:form)
-      end
 
       private
 

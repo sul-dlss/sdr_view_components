@@ -4,18 +4,18 @@ module SdrViewComponents
   module Forms
     # Component for rendering invalid feedback for a form field.
     class InvalidFeedbackComponent < BaseComponent
-      def initialize(field_name:, form:, classes: [], data: {})
+      def initialize(field_name:, form:, classes: [], **args)
         @field_name = field_name
         @form = form
         @classes = classes
-        @data = data
+        @args = args
         super()
       end
 
-      attr_reader :field_name, :form, :data
+      attr_reader :field_name, :form, :args
 
       def call
-        tag.div(class: classes, id:, data:) do
+        tag.div(class: classes, id:, **args) do
           errors.join(', ')
         end
       end
