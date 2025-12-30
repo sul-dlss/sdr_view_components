@@ -7,6 +7,7 @@ module SdrViewComponents
       def initialize(**args)
         args[:container_classes] = merge_classes('form-check', args[:container_classes])
         args[:label_default_class] = 'form-check-label'
+        args[:variant] = :help_text_below
         super
       end
 

@@ -6,15 +6,20 @@ module SdrViewComponents
     class FieldComponent < BaseComponent
       renders_one :additional_container_content
 
-      def initialize(form:, field_name:, container_classes: [], **args)
+      def initialize(form:, field_name:, container_classes: [], variant: :default, **args)
         @form = form
         @field_name = field_name
         @container_classes = container_classes
+        @variant = variant
+        # In the help_text_below variant, the help text is rendered below the input field.
+        # This is necessary for some types of fields such as checkboxes.
+        raise ArgumentError, 'invalid variant' unless %i[default help_text_below].include?(@variant)
+
         @args = args
         super()
       end
 
-      attr_reader :form, :args, :field_name
+      attr_reader :form, :args, :field_name, :variant
 
       # Any component that inherits from FieldComponent must implement this method
       # or provide its own template.
@@ -70,6 +75,10 @@ module SdrViewComponents
 
       def container_classes
         merge_classes(@container_classes)
+      end
+
+      def help_text_below?
+        variant == :help_text_below
       end
       ##########################################################################
 
