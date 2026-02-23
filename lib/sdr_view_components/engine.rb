@@ -21,5 +21,11 @@ module SdrViewComponents
       app.config.assets.paths << Engine.root.join('app', 'assets', 'stylesheets').to_s
       app.config.assets.precompile += %w[sdr_view_components.css]
     end
+
+    initializer 'sdr_view_components.helpers' do
+      ActiveSupport.on_load(:action_view) do
+        include SdrViewComponents::Helpers
+      end
+    end
   end
 end
