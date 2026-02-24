@@ -6,7 +6,8 @@ module SdrViewComponents
     class AlertComponent < BaseComponent
       # Variants are :danger, :success, :note, :info, :warning, :input
       # input is not part of the component library
-      def initialize(title: nil, variant: :info, dismissible: false, data: {}, classes: [], id: nil, role: 'alert') # rubocop:disable Metrics/ParameterLists
+      def initialize(title: nil, variant: :info, dismissible: false, # rubocop:disable Metrics/ParameterLists
+                     data: {}, classes: [], id: nil, role: 'alert', text: nil)
         raise ArgumentError, 'Invalid variant' unless %i[danger success note info warning input].include?(variant.to_sym)
 
         @title = title
@@ -16,10 +17,11 @@ module SdrViewComponents
         @classes = classes
         @id = id
         @role = role
+        @text = text
         super()
       end
 
-      attr_reader :title, :variant, :data, :id, :role
+      attr_reader :title, :variant, :data, :id, :role, :text
 
       def classes
         merge_classes(%w[alert d-flex shadow-sm align-items-center], variant_class, dismissible_class, @classes)
@@ -46,7 +48,7 @@ module SdrViewComponents
       end
 
       def render?
-        title.present? || content.present?
+        title.present? || content.present? || text.present?
       end
     end
   end
