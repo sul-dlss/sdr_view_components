@@ -33,9 +33,17 @@ RSpec.describe SdrViewComponents::Elements::AlertComponent, type: :component do
     end
   end
 
-  context 'without title or content' do
+  context 'with text and without title or content' do
+    it 'does renders' do
+      render_inline(described_class.new(title: '', text: 'My text'))
+
+      expect(page).to have_text('My text')
+    end
+  end
+
+  context 'without text, title, or content' do
     it 'does not render' do
-      render_inline(described_class.new(title: '').with_content(''))
+      render_inline(described_class.new(title: ''))
 
       expect(page).to have_no_css('.alert')
     end
