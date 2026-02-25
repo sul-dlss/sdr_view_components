@@ -11,7 +11,9 @@ module SdrViewComponents
       end
 
       def call
-        link_to 'Stanford University Libraries', 'https://library.stanford.edu', class: logo_classes
+        link_to 'https://library.stanford.edu', class: logo_classes, aria: { label: 'Stanford University Libraries' } do
+          tag.span(class: 'visually-hidden') { 'Stanford University Libraries' }
+        end
       end
 
       private
