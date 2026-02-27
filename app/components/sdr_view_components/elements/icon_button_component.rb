@@ -4,15 +4,15 @@ module SdrViewComponents
   module Elements
     # Component for a button which is an icon
     class IconButtonComponent < BaseComponent
-      def initialize(icon:, label:, classes: [], data: {})
+      def initialize(icon:, label:, classes: [], **options)
         @icon = icon
         @label = label
         @classes = classes
-        @data = data
+        @options = options
         super()
       end
 
-      attr_reader :data, :label
+      attr_reader :label, :options
 
       def classes
         merge_classes(%w[border border-0], @classes)
