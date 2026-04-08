@@ -18,8 +18,16 @@ module SdrViewComponents
         merge_classes(%w[border border-0], @classes)
       end
 
+      def button_icon?
+        helpers.respond_to?(:"#{@icon}_icon")
+      end
+
       def button_icon
         helpers.public_send(:"#{@icon}_icon")
+      end
+
+      def render?
+        button_icon?
       end
     end
   end
