@@ -20,7 +20,9 @@ module SdrViewComponents
 
       # Renders the component without the need for a .erb partial.
       def call
-        content_tag(@level, class: classes) do
+        return unless tag.respond_to?(@level)
+
+        tag.public_send(@level, class: classes) do
           @text || content
         end
       end
