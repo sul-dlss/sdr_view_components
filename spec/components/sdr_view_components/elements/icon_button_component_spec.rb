@@ -23,4 +23,11 @@ RSpec.describe SdrViewComponents::Elements::IconButtonComponent, type: :componen
       expect(page).to have_css('.btn.class1.class2')
     end
   end
+
+  context 'with an unknown icon' do
+    it 'raises UnknownComponentIcon' do
+      expect { render_inline(described_class.new(icon: :nonexistent, label: 'Clear')) }
+        .to raise_error(SdrViewComponents::Error::UnknownComponentIcon, /nonexistent/)
+    end
+  end
 end

@@ -12,6 +12,10 @@ module SdrViewComponents
         super()
       end
 
+      def before_render
+        raise SdrViewComponents::Error::UnknownComponentIcon, "Unknown icon type: #{@icon}" unless button_icon?
+      end
+
       attr_reader :label, :options
 
       def classes
@@ -20,6 +24,12 @@ module SdrViewComponents
 
       def button_icon
         helpers.public_send(:"#{@icon}_icon")
+      end
+
+      private
+
+      def button_icon?
+        helpers.respond_to?(:"#{@icon}_icon")
       end
     end
   end
