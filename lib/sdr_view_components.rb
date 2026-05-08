@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'sdr_view_components/version'
+require 'sdr_view_components/configuration'
 require 'sdr_view_components/engine'
 require 'sdr_view_components/error'
 require 'zeitwerk'

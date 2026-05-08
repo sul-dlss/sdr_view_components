@@ -4,8 +4,7 @@
 
 # SdrViewComponents
 
-A rails gem to provide reusable view components used throughout the SDR applications and implement
-component library assets.
+A rails gem to provide reusable view components used throughout the SDR applications and implement component library assets.
 
 # Installation
 
@@ -113,3 +112,51 @@ At a minimum, each of these components must be provided wih the `form:` and `fie
 ```
 <% render SdrViewComponent::....>
 ```
+
+## Component library version
+The [component-library](https://github.com/sul-dlss/component-library/) version is set in `lib/sdr_view_components/configuration.rb`.
+
+```
+def initialize
+  # Default URL for the component library assets
+  @component_library_url = 'https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-01-27'
+end
+```
+
+## Lookbook
+
+[Lookbook](https://lookbook.build/) provides a component browser for the components.
+
+### Running locally
+
+`bin/rails s`
+
+Lookbook will then be available at: http://localhost:3000/lookbook
+
+### Adding to another app
+
+When performing development in an app that is using SdrViewComponents, it may be helpful to be running Lookbook in that app (instead of having to run a separate local instance of it).
+
+To run Lookbook in that app:
+1. Add Lookbook to `Gemfile.rb`:
+```
+group :development do
+  gem 'lookbook'
+end
+```
+2. Add routes to `routes.rb`:
+```
+if Rails.env.development?
+  mount SdrViewComponents::Engine => '/sdr_view_components'
+  mount Lookbook::Engine, at: '/lookbook'
+end
+```
+3. Add `config/initializers/sdr_view_components.rb`:
+```
+SdrViewComponents.configure do |config|
+  config.component_library_url = Settings.component_library.url
+end
+```
+It is recommended to change the component library URL to a configuration in the app instead of hardcoding in layouts.
+
+When your app is running locally, Lookbook will be available at: http://localhost:3000/lookbook

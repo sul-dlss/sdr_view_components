@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SulViewComponents
+module SdrViewComponents
   module Elements
     class ToastComponentPreview < ViewComponent::Preview
       def default
