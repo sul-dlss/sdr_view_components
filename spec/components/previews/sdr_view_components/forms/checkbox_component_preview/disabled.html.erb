@@ -1,0 +1,9 @@
+<% model = SdrViewComponents::Forms::CheckboxComponentPreview::CheckboxPreviewModel.new(test_boolean_field: false) %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::CheckboxComponent.new(
+    form: form,
+    field_name: :test_boolean_field,
+    input_disabled: true
+  ) %>
+<% end %>
