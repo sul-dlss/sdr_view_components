@@ -21,7 +21,7 @@ module SdrViewComponents
       def background_color
         case variant
         when :red
-          'bg-stanford-cardinal'
+          'bg-stanford-digital-red'
         when :green
           'bg-stanford-digital-green'
         when :poppy

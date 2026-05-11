@@ -1,4 +1,3 @@
-<h2>Header Component - Dark Variant, Customized</h2>
 <%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle', variant: :dark, background_color: '1, 104, 149') do |header| %>
   <% header.with_primary_navigation_link do %>
     <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Home', path: '#') %>
