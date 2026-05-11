@@ -1,0 +1,9 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#without-size-modal-preview">
+  Open modal without size
+</button>
+
+<%= render SdrViewComponents::Elements::ModalComponent.new(id: 'without-size-modal-preview', size: nil) do |modal| %>
+  <% modal.with_body do %>
+    <p class="mb-0">This example renders the modal without an explicit size class.</p>
+  <% end %>
+<% end %>

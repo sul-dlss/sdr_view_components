@@ -1,0 +1,13 @@
+<%= render SdrViewComponents::Elements::TooltipComponent.new(
+  target_label: 'Collection title',
+  tooltip: 'Use the public collection title shown to repository users.'
+) %>
+
+<script>
+  window.addEventListener('load', () => {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    ;[...tooltipTriggerList].forEach((tooltipTriggerEl) => {
+      window.bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl)
+    })
+  })
+</script>

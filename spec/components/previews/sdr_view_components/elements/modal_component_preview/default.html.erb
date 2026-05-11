@@ -1,0 +1,9 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#default-modal-preview">
+  Open default modal
+</button>
+
+<%= render SdrViewComponents::Elements::ModalComponent.new(id: 'default-modal-preview') do |modal| %>
+  <% modal.with_body do %>
+    <p class="mb-0">Use this modal to review submission details before publishing.</p>
+  <% end %>
+<% end %>

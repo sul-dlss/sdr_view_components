@@ -1,0 +1,19 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-with-header-and-footer-preview">
+  Open modal with header and footer
+</button>
+
+<%= render SdrViewComponents::Elements::ModalComponent.new(id: 'modal-with-header-and-footer-preview') do |modal| %>
+  <% modal.with_header do %>
+    <h2 class="h5 mb-0">Publish item</h2>
+  <% end %>
+
+  <% modal.with_body do %>
+    <p>This item is ready to publish to the repository.</p>
+    <p class="mb-0">Review the metadata one final time before continuing.</p>
+  <% end %>
+
+  <% modal.with_footer do %>
+    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary">Publish</button>
+  <% end %>
+<% end %>
