@@ -1,0 +1,11 @@
+<% row = SdrViewComponents::Tables::RowComponent.new(value: 'Submitted') %>
+<% row.with_label_content do %>
+  <strong>Deposit status</strong><br>
+  <small>Current workflow step</small>
+<% end %>
+
+<table class="table">
+  <tbody>
+    <%= render row %>
+  </tbody>
+</table>

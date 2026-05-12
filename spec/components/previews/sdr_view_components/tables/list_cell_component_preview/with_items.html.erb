@@ -1,0 +1,11 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <%= render SdrViewComponents::Tables::ListCellComponent.new do |component| %>
+        <% items.each do |item| %>
+          <% component.with_item { item } %>
+        <% end %>
+      <% end %>
+    </tr>
+  </tbody>
+</table>

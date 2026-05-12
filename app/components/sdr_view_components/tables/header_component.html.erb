@@ -1,0 +1,4 @@
+<%= tag.th scope: 'col', class: classes, **header_options do %>
+  <%= label %>
+  <%= render SdrViewComponents::Elements::TooltipComponent.new(target_label: label, tooltip:) %>
+<% end %>

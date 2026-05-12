@@ -1,0 +1,26 @@
+<%= render(SdrViewComponents::Tables::RawTableComponent.new(label: 'Custom Row Content')) do |component| %>
+  <% component.with_header(label: 'Item') %>
+  <% component.with_header(label: 'Status') %>
+  <% component.with_header(label: 'Description') %>
+  <% component.with_row do %>
+    <tr>
+      <td>Item 1</td>
+      <td><strong>Complete</strong></td>
+      <td>Custom HTML rendering</td>
+    </tr>
+  <% end %>
+  <% component.with_row do %>
+    <tr>
+      <td>Item 2</td>
+      <td><em>In Progress</em></td>
+      <td><code>RawTableComponent</code> demo</td>
+    </tr>
+  <% end %>
+  <% component.with_row do %>
+    <tr>
+      <td>Item 3</td>
+      <td><u>Pending</u></td>
+      <td>Arbitrary HTML content</td>
+    </tr>
+  <% end %>
+<% end %>

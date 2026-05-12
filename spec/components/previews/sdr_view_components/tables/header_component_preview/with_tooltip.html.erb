@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+    <tr>
+      <%= render SdrViewComponents::Tables::HeaderComponent.new(
+            label: 'Access',
+            tooltip: 'Explains who can view or manage this item.'
+          ) %>
+    </tr>
+  </thead>
+</table>
+
+<script>
+  window.addEventListener('load', () => {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    ;[...tooltipTriggerList].forEach((tooltipTriggerEl) => {
+      window.bootstrap.Tooltip.getOrCreateInstance(tooltipTriggerEl)
+    })
+  })
+</script>

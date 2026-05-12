@@ -1,0 +1,24 @@
+<%= tag.tr **row_options do %>
+  <% if label.present? || label_content.present? %>
+    <th class="col-3" scope="row">
+      <%= label || label_content %>
+      <%= render SdrViewComponents::Elements::TooltipComponent.new(target_label: label, tooltip:) %>
+    </th>
+  <% end %>
+
+  <% if first_value.present? %>
+    <td class="col-3" scope="row"><%= first_value %></td>
+  <% end %>
+
+  <% values.each do |value| %>
+    <td><%= value %></td>
+  <% end %>
+
+  <% cells.each do |cell| %>
+    <%= cell %>
+  <% end %>
+
+  <% if empty_cell? %>
+    <td></td>
+  <% end %>
+<% end %>
