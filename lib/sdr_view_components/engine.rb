@@ -24,8 +24,8 @@ module SdrViewComponents
     end
 
     initializer 'sdr_view_components.assets' do |app|
+      app.config.assets.paths << Engine.root.join('app', 'assets').to_s
       app.config.assets.paths << Engine.root.join('app', 'assets', 'stylesheets').to_s
-      app.config.assets.precompile += %w[sdr_view_components.css]
     end
 
     initializer 'sdr_view_components.helpers' do

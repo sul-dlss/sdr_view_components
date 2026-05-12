@@ -14,7 +14,7 @@ Accept either:
 
 ### Critical Rules (Apply These First)
 **Must Do:**
-1. Do not include data, classes, id, or style arguments unless explicitly requested.
+1. Do not include data, input_data, classes, id, or style arguments unless explicitly requested.
 2. Ask before modifying an existing preview file or method.
 3. Respect variant coverage: create one example per variant value; only combine non-variant args with default variant.
 
@@ -35,6 +35,16 @@ Accept either:
 3. Do not generate a full cross-product of all non-variant args across all variant values.
 4. If argument prioritization is needed, ask the user to choose priority args for that run.
 
+### Form Component Conventions
+When previewing form components (components in the `forms` namespace):
+1. **Template-backed methods required**: Use `.html.erb` template files because form helpers (`form_with`, `form_with(model:)`) are only available in view context, not in Ruby preview methods.
+2. **FormBuilder requirement**: Basic form components (e.g., `BasicCheckboxComponent`) require a `FormBuilder` object. Supply it via `form_with(url:, scope:)` in templates.
+3. **FieldComponent slots**: Form field components that inherit from `FieldComponent` expose `additional_container_content` as a renderable slot. Include previews of this slot in examples.
+4. **Help text variant**: Components using `FieldComponent` may use the `help_text_below` variant to position help text after the input. Demonstrate both inline and below-input help text when applicable.
+5. **Error state previews**: If a form component's model validates, demonstrate the error state by calling `model.valid?` to trigger validation, then render the component with the invalid model.
+6. **Sample models**: Use small inline `ActiveModel::Model` classes defined within the preview class for consistent, reusable test data.
+7. **Basic form components**: Basic form components (e.g., `BasicCheckboxComponent`) should be placed in `spec/components/previews/sdr_view_components/forms/basic`.
+
 ### Lookbook Alignment
 Follow Lookbook guide conventions: https://lookbook.build/guide
 
@@ -47,9 +57,10 @@ Generate or update the following as needed:
 
 ### Existing Reference Patterns In This Repo
 1. spec/components/previews/sdr_view_components/elements/toast_component_preview.rb
-2. spec/components/previews/sdr_view_components/structure/footer_component_preview.rb
-3. spec/components/previews/sdr_view_components/structure/header_component_preview.rb
-4. spec/components/previews/sdr_view_components/structure/header_component_preview/light_variant.html.erb
+2. spec/components/previews/sdr_view_components/structure/header_component_preview.rb
+3. spec/components/previews/sdr_view_components/structure/header_component_preview/light_variant.html.erb
+4. spec/components/previews/sdr_view_components/forms/basic_file_component_preview.rb (minimal form component)
+5. spec/components/previews/sdr_view_components/forms/file_component_preview.rb (form field component with slots)
 
 ### Verification Checklist
 Before finalizing, verify all of the following:

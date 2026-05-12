@@ -1,0 +1,7 @@
+<%= form_with(url: '/example', scope: :feedback) do |form| %>
+  <%= render SdrViewComponents::Forms::BasicTextAreaComponent.new(
+    form: form,
+    field_name: :comments,
+    placeholder: 'Add a note about this item'
+  ) %>
+<% end %>

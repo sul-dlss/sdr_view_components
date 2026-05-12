@@ -1,0 +1,10 @@
+<% model = SdrViewComponents::Forms::TextFieldComponentPreview::TextFieldPreviewModel.new(title: 'Project overview') %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::TextFieldComponent.new(
+    form: form,
+    field_name: :title,
+    variant: :help_text_below,
+    help_text: 'Help text appears below the field when using the help_text_below variant.'
+  ) %>
+<% end %>

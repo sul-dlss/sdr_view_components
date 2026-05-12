@@ -1,0 +1,53 @@
+.masthead {
+  color: white;
+}
+
+.masthead h1,
+.masthead .h1 {
+  font-size: 2.25rem;
+}
+
+.btn-group-toggle label.btn {
+  --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgb(var(--bs-btn-focus-shadow-rgb), .5);
+}
+
+.btn-group-toggle input:checked + label {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  color: #fff;
+}
+
+.btn-group-toggle input:not(:checked) + label {
+  background-color: transparent;
+  border-color: var(--bs-primary);
+  color: var(--bs-primary);
+}
+
+.btn-group-toggle .btn-check:checked + .btn {
+  background-color: var(--stanford-digital-blue);
+  border-color: var(--stanford-digital-blue);
+  color: #fff;
+}
+
+.btn-group-toggle :not(.btn-check:checked) + .btn {
+  color: var(--stanford-digital-blue);
+  border-color: var(--stanford-digital-blue);
+}
+
+.btn-group-toggle input:checked + label::before {
+  display: inline-block;
+  margin-right: 3px;
+  font-family: bootstrap-icons;
+  vertical-align: -15%;
+  content: "\F633";
+}
+
+.banner.alert a.btn-primary {
+  color: white;
+}
+
+.form-control,
+.form-select,
+.form-check-input {
+  border-color: var(--stanford-60-black);
+}

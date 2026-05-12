@@ -1,0 +1,9 @@
+<% model = SdrViewComponents::Forms::RadioButtonComponentPreview::RadioButtonPreviewModel.new(delivery_method: nil) %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::RadioButtonComponent.new(
+    form: form,
+    field_name: :delivery_method,
+    input_value: 'email'
+  ) %>
+<% end %>

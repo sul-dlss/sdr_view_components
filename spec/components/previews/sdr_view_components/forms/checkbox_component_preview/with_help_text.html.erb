@@ -4,6 +4,7 @@
   <%= render SdrViewComponents::Forms::CheckboxComponent.new(
     form: form,
     field_name: :test_boolean_field,
-    help_text: 'Receive occasional product updates.'
+    help_text: 'This help text appears below the checkbox.',
+    variant: :help_text_below
   ) %>
 <% end %>

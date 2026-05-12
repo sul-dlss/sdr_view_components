@@ -1,0 +1,9 @@
+<% model = SdrViewComponents::Forms::TextAreaComponentPreview::TextAreaPreviewModel.new(description: nil) %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::TextAreaComponent.new(
+    form: form,
+    field_name: :description,
+    label_hidden: true
+  ) %>
+<% end %>

@@ -33,8 +33,7 @@
     <%= tag.link rel: 'icon', href: "#{SdrViewComponents.configuration.component_library_url}/styles/icon.svg", type: 'image/svg+xml' %>
     <%= tag.link rel: 'apple-touch-icon', href: "#{SdrViewComponents.configuration.component_library_url}/styles/icon.png" %>
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, 'data-turbo-track': 'reload' %>
+    <%= stylesheet_link_tag 'sdr_view_components', 'data-turbo-track': 'reload' %>
     <%= tag.link rel: 'stylesheet', href: "#{SdrViewComponents.configuration.component_library_url}/styles/sul.css" %>
   </head>
 

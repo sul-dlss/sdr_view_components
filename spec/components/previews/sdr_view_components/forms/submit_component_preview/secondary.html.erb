@@ -1,0 +1,6 @@
+<%= form_with(url: '/items/123', method: :patch) do %>
+  <%= render SdrViewComponents::Forms::SubmitComponent.new(
+    label: 'Save draft',
+    variant: :secondary
+  ) %>
+<% end %>

@@ -1,0 +1,8 @@
+<%= form_with(url: '/items/123/publish', method: :post, html: { id: 'publish-item-form' }) do |form| %>
+  <%= form.hidden_field :item_id, value: '123' %>
+<% end %>
+
+<%= render SdrViewComponents::Forms::SubmitComponent.new(
+  label: 'Publish item',
+  form_id: 'publish-item-form'
+) %>

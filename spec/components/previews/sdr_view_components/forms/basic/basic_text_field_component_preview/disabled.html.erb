@@ -1,0 +1,8 @@
+<%= form_with(url: '/example', scope: :item) do |form| %>
+  <%= render SdrViewComponents::Forms::BasicTextFieldComponent.new(
+    form: form,
+    field_name: :title,
+    disabled: true,
+    placeholder: 'This field is unavailable'
+  ) %>
+<% end %>

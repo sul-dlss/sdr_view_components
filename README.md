@@ -20,6 +20,7 @@ This set of components relies on the component library stylesheets, add:
 
 ```
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2025-09-11/styles/sul.css">
+<%= stylesheet_link_tag "sdr_view_components", "data-turbo-track": "reload" %>
 ```
 
 with the most recent date tagged release to your `application.html.erb` layout file.
@@ -90,6 +91,11 @@ end
 ## Lookbook
 
 [Lookbook](https://lookbook.build/) provides a component browser for the components.
+
+### Creating previews
+For a component to appear in Lookbook, it must have a preview. See `spec/components/previews/sdr_view_components`
+
+Previews can easily be created with the `viewComponentPreview` prompt. For example: `/viewComponentPreview SpinnerComponent`.
 
 ### Running locally
 
