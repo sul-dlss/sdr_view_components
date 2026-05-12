@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe SdrViewComponents::Elements::SpinnerComponent, type: :component do
   it 'renders the spinner' do
     render_inline(described_class.new)
-    expect(page).to have_css(".spinner-border[role='status']")
+    expect(page).to have_css(".spinner-border[role='status'].mx-2")
     expect(page).to have_text('Loading...')
   end
 
@@ -27,6 +27,13 @@ RSpec.describe SdrViewComponents::Elements::SpinnerComponent, type: :component d
     it 'renders the spinner with the custom classes' do
       render_inline(described_class.new(classes: %w[class1 class2]))
       expect(page).to have_css('div.class1.class2')
+    end
+  end
+
+  context 'with custom spinner classes' do
+    it 'renders the spinner with the custom classes' do
+      render_inline(described_class.new(spinner_classes: %w[class1 class2]))
+      expect(page).to have_css('.spinner-border.class1.class2:not(.mx-2)')
     end
   end
 
