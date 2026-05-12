@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module SulViewComponents
+module SdrViewComponents
   module Structure
     class FooterComponentPreview < ViewComponent::Preview
       def default

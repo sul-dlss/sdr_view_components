@@ -37,5 +37,7 @@ module Dummy
     ActionView::Base.field_error_proc = proc do |html_tag, _instance|
       html_tag.gsub(/(form-control|form-check-input|form-select)/, '\1 is-invalid').html_safe # rubocop:disable Rails/OutputSafety
     end
+
+    config.autoload_paths << SdrViewComponents::Engine.root.join('spec/components/previews')
   end
 end

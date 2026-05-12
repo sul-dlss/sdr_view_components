@@ -1,0 +1,11 @@
+<% model = SdrViewComponents::Forms::ToggleComponentPreview::TogglePreviewModel.new(audience: 'collections') %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::ToggleComponent.new(
+    form: form,
+    field_name: :audience
+  ) do |component| %>
+    <% component.with_left_toggle_option(form:, field_name: :audience, label: 'Collections', value: 'collections') %>
+    <% component.with_right_toggle_option(form:, field_name: :audience, label: 'Items', value: 'items') %>
+  <% end %>
+<% end %>

@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-module SulViewComponents
+module SdrViewComponents
   module Elements
     class ToastComponentPreview < ViewComponent::Preview
+      # @!group Variants
       def default
         render SdrViewComponents::Elements::ToastComponent.new(title: 'Alert!', text: 'Black Toast text')
-      end
-
-      def default_with_close_text
-        render SdrViewComponents::Elements::ToastComponent.new(title: 'Alert!', text: 'Black Toast text', close_text: 'Undo')
       end
 
       def red
@@ -21,6 +18,11 @@ module SulViewComponents
 
       def poppy
         render SdrViewComponents::Elements::ToastComponent.new(title: 'Alert!', text: 'Poppy Toast text', variant: :poppy)
+      end
+      # @!endgroup
+
+      def with_close_text
+        render SdrViewComponents::Elements::ToastComponent.new(title: 'Alert!', text: 'Black Toast text', close_text: 'Undo')
       end
     end
   end

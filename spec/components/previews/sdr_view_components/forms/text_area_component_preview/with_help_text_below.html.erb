@@ -1,0 +1,10 @@
+<% model = SdrViewComponents::Forms::TextAreaComponentPreview::TextAreaPreviewModel.new(description: nil) %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::TextAreaComponent.new(
+    form: form,
+    field_name: :description,
+    variant: :help_text_below,
+    help_text: 'This help text appears after the textarea.'
+  ) %>
+<% end %>

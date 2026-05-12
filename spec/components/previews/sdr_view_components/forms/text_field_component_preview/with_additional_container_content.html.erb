@@ -1,0 +1,12 @@
+<% model = SdrViewComponents::Forms::TextFieldComponentPreview::TextFieldPreviewModel.new(title: 'Project overview') %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::TextFieldComponent.new(
+    form: form,
+    field_name: :title
+  ) do |component| %>
+    <% component.with_additional_container_content do %>
+      <span class="text-info">Suggested: keep titles under 80 characters.</span>
+    <% end %>
+  <% end %>
+<% end %>

@@ -4,8 +4,7 @@
 
 # SdrViewComponents
 
-A rails gem to provide reusable view components used throughout the SDR applications and implement
-component library assets.
+A rails gem to provide reusable view components used throughout the SDR applications and implement component library assets.
 
 # Installation
 
@@ -21,47 +20,12 @@ This set of components relies on the component library stylesheets, add:
 
 ```
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2025-09-11/styles/sul.css">
+<%= stylesheet_link_tag "sdr_view_components", "data-turbo-track": "reload" %>
 ```
 
 with the most recent date tagged release to your `application.html.erb` layout file.
 
 ## Usage
-
-### Add the SUL Header to your application
-
-Supported header variations are `:dark`, `:light`, and `:white` (default is `:light`)
-
-```
-<%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle', variant: :dark) do |header| %>
-  <% header.with_primary_navigation_link do %>
-    <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Home', path: '#') %>
-  <% end %>
-  <% header.with_primary_navigation_link do %>
-    <%= render SdrViewComponents::Elements::Navigation::DropdownMenuComponent.new(text: 'Logged in: amcollie-preview-dropdown') do |dropdown| %>
-      <% dropdown.with_item do %>
-        <%= link_to 'Logout', '/Shibboleth.sso/Logout', class: 'dropdown-item' %>
-      <% end %>
-    <% end %>
-    <%# ... all primary nav links %>
-  <% end %>
-  <% header.with_secondary_navigation_link do %>
-    <%= render SdrViewComponents::Elements::Navigation::NavItemComponent.new(text: 'Option', path: '/item1') %>
-    <%# ... all secondary nav links>
-  <% end %>
-<% end %>
-```
-
-The `:dark` variation supports providing an rgb value via the `background_color` param in order to override the default dark background, for example:
-
-```
-<%= render SdrViewComponents::Structure::HeaderComponent.new(title: 'Test Header', subtitle: 'Test Subtitle', variant: :dark, rgb_color_str: '1, 104, 149') do |header| %>
-
-...
-
-<% end %>
-```
-
-By default, the SUL Rosette is included in the header, this can be disabled by setting `rosette: false` in the parameter list when instantiating the header.
 
 ### Form components
 
@@ -113,3 +77,56 @@ At a minimum, each of these components must be provided wih the `form:` and `fie
 ```
 <% render SdrViewComponent::....>
 ```
+
+## Component library version
+The [component-library](https://github.com/sul-dlss/component-library/) version is set in `lib/sdr_view_components/configuration.rb`.
+
+```
+def initialize
+  # Default URL for the component library assets
+  @component_library_url = 'https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-01-27'
+end
+```
+
+## Lookbook
+
+[Lookbook](https://lookbook.build/) provides a component browser for the components.
+
+### Creating previews
+For a component to appear in Lookbook, it must have a preview. See `spec/components/previews/sdr_view_components`
+
+Previews can easily be created with the `viewComponentPreview` prompt. For example: `/viewComponentPreview SpinnerComponent`.
+
+### Running locally
+
+`bin/rails s`
+
+Lookbook will then be available at: http://localhost:3000/lookbook
+
+### Adding to another app
+
+When performing development in an app that is using SdrViewComponents, it may be helpful to be running Lookbook in that app (instead of having to run a separate local instance of it).
+
+To run Lookbook in that app:
+1. Add Lookbook to `Gemfile.rb`:
+```
+group :development do
+  gem 'lookbook'
+end
+```
+2. Add routes to `routes.rb`:
+```
+if Rails.env.development?
+  mount SdrViewComponents::Engine => '/sdr_view_components'
+  mount Lookbook::Engine, at: '/lookbook'
+end
+```
+3. Add `config/initializers/sdr_view_components.rb`:
+```
+SdrViewComponents.configure do |config|
+  config.component_library_url = Settings.component_library.url
+end
+```
+It is recommended to change the component library URL to a configuration in the app instead of hardcoding in layouts.
+
+When your app is running locally, Lookbook will be available at: http://localhost:3000/lookbook
