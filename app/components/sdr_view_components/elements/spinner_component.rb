@@ -6,7 +6,7 @@ module SdrViewComponents
     class SpinnerComponent < BaseComponent
       def initialize(message: 'Loading...', message_classes: [], message_position: :right, hide_message: false, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
                      image_path: nil, variant: nil, classes: [],
-                     height: nil, width: nil, speed: 0.75, **options)
+                     height: nil, width: nil, speed: 0.75, spinner_classes: ['mx-2'], **spinner_options)
         @message = message
         @variant = variant
         @hide_message = hide_message
@@ -16,15 +16,16 @@ module SdrViewComponents
         @width = width
         @message_classes = message_classes
         @speed = speed # In seconds, so a larger number is slower. The default (0.75) is the same as Bootstrap's default.
-        @options = options
+        @spinner_classes = spinner_classes
+        @spinner_options = spinner_options
         @message_position = message_position # :bottom or :right
         super()
       end
 
-      attr_reader :message, :image_path, :options
+      attr_reader :message, :image_path, :spinner_options
 
       def spinner_classes
-        merge_classes('spinner-border', variant_class, border_class, 'mx-2')
+        merge_classes('spinner-border', variant_class, border_class, @spinner_classes)
       end
 
       def message_classes
