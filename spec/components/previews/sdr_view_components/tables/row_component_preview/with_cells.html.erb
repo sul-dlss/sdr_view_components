@@ -1,0 +1,13 @@
+<% row = SdrViewComponents::Tables::RowComponent.new(label: 'Content files') %>
+<% row.with_cell do %>
+  image-0001.tif
+<% end %>
+<% row.with_cell do %>
+  image-0002.tif
+<% end %>
+
+<table class="table">
+  <tbody>
+    <%= render row %>
+  </tbody>
+</table>

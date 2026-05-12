@@ -1,0 +1,17 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <%= render SdrViewComponents::Tables::CellComponent.new(colspan: 2) do %>
+        Quarterly total
+      <% end %>
+    </tr>
+    <tr>
+      <%= render SdrViewComponents::Tables::CellComponent.new do %>
+        Revenue
+      <% end %>
+      <%= render SdrViewComponents::Tables::CellComponent.new do %>
+        $125,000
+      <% end %>
+    </tr>
+  </tbody>
+</table>
