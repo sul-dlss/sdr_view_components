@@ -1,0 +1,16 @@
+<%= render SdrViewComponents::Elements::Tabs::TabListComponent.new do |tab_list| %>
+  <% tab_list.with_tab(label: 'Details', id: 'details-tab', pane_id: 'details-pane', active: true) %>
+  <% tab_list.with_tab(label: 'History', id: 'history-tab', pane_id: 'history-pane') %>
+
+  <% tab_list.with_header do %>
+    <p class="mt-3 mb-2 fst-italic">Choose one of the tabs.</p>
+  <% end %>
+
+  <% tab_list.with_pane(id: 'details-pane', tab_id: 'details-tab', active: true) do %>
+    <p>Details pane content.</p>
+  <% end %>
+
+  <% tab_list.with_pane(id: 'history-pane', tab_id: 'history-tab') do %>
+    <p>History pane content.</p>
+  <% end %>
+<% end %>

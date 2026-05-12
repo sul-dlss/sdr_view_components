@@ -51,3 +51,23 @@
 .form-check-input {
   border-color: var(--stanford-60-black);
 }
+
+/* Tabs */
+.nav-underline {
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+}
+
+.nav-underline .nav-link {
+  width: 10.5rem;
+}
+
+.nav-underline .nav-link:not(.active) {
+  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+}
+
+.nav-underline .nav-link.active {
+  border-bottom: 3px solid #B1040E;
+  color: #B1040E;
+  font-weight: bold;
+}
