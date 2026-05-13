@@ -67,7 +67,7 @@
 }
 
 .nav-underline .nav-link:not(.active) {
-  color: rgba(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
+  color: rgb(var(--bs-link-color-rgb), var(--bs-link-opacity, 1));
 }
 
 .nav-underline .nav-link.active {

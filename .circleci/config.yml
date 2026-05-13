@@ -10,6 +10,8 @@ workflows:
           context: dlss
       - ruby-rails/herblint:
           name: herblint
+      - ruby-rails/stylelint:
+          name: stylelint
       - ruby-rails/test-gem:
           name: test
           context: dlss
