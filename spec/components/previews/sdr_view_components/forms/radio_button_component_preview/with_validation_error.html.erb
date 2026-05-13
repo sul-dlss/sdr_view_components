@@ -3,9 +3,9 @@
 
 <%= form_with(model: model, url: '/example') do |form| %>
   <%= render SdrViewComponents::Forms::RadioButtonComponent.new(
-    form: form,
-    field_name: :delivery_method,
-    input_value: 'email',
-    label_text: 'Email'
-  ) %>
+        form: form,
+        field_name: :delivery_method,
+        input_value: 'email',
+        label_text: 'Email'
+      ) %>
 <% end %>

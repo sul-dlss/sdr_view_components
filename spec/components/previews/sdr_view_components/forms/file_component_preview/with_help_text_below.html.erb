@@ -2,9 +2,9 @@
 
 <%= form_with(model: model, url: '/upload') do |form| %>
   <%= render SdrViewComponents::Forms::FileComponent.new(
-    form: form,
-    field_name: :file,
-    variant: :help_text_below,
-    help_text: 'Help text appears below the file input when using help_text_below variant.'
-  ) %>
+        form: form,
+        field_name: :file,
+        variant: :help_text_below,
+        help_text: 'Help text appears below the file input when using help_text_below variant.'
+      ) %>
 <% end %>

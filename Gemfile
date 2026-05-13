@@ -7,6 +7,7 @@ gemspec
 
 gem 'capybara'
 gem 'debug'
+gem 'erb_lint'
 gem 'lookbook'
 gem 'propshaft'
 gem 'puma'

@@ -2,9 +2,9 @@
 
 <%= form_with(model: model, url: '/example') do |form| %>
   <%= render SdrViewComponents::Forms::CheckboxComponent.new(
-    form: form,
-    field_name: :test_boolean_field
-  ) do |component| %>
+        form: form,
+        field_name: :test_boolean_field
+      ) do |component| %>
     <% component.with_additional_container_content do %>
       <span class="text-info">Extra info: This is additional container content.</span>
     <% end %>

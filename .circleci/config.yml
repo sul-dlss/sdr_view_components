@@ -6,6 +6,8 @@ workflows:
     jobs:
       - ruby-rails/lint:
           name: lint
+      - ruby-rails/lint-erb:
+          context: dlss
       - ruby-rails/test-gem:
           name: test
           context: dlss
