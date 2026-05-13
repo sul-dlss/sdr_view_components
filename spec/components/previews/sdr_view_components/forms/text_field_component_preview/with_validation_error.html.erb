@@ -1,5 +1,4 @@
 <% model = SdrViewComponents::Forms::TextFieldComponentPreview::TextFieldPreviewModel.new(title: nil) %>
-<% model.valid? %>
 
 <%= form_with(model: model, url: '/example') do |form| %>
   <%= render SdrViewComponents::Forms::TextFieldComponent.new(

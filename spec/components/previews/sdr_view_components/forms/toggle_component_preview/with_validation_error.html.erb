@@ -1,5 +1,4 @@
 <% model = SdrViewComponents::Forms::ToggleComponentPreview::TogglePreviewModel.new(audience: nil) %>
-<% model.valid? %>
 
 <%= form_with(model: model, url: '/example') do |form| %>
   <%= render SdrViewComponents::Forms::ToggleComponent.new(

@@ -8,6 +8,8 @@ workflows:
           name: lint
       - ruby-rails/lint-erb:
           context: dlss
+      - ruby-rails/herblint:
+          name: herblint
       - ruby-rails/test-gem:
           name: test
           context: dlss

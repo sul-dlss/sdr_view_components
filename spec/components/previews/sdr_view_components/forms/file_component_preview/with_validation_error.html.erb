@@ -1,5 +1,4 @@
 <% model = SdrViewComponents::Forms::FileComponentPreview::FilePreviewModel.new(document: nil) %>
-<% model.valid? %>
 
 <%= form_with(model: model, url: '/upload') do |form| %>
   <%= render SdrViewComponents::Forms::FileComponent.new(
