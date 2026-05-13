@@ -1,6 +1,6 @@
 <%= form_with(url: '/upload', scope: :document) do |form| %>
   <%= render SdrViewComponents::Forms::BasicFileComponent.new(
-    form: form,
-    field_name: :file
-  ) %>
+        form: form,
+        field_name: :file
+      ) %>
 <% end %>

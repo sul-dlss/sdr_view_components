@@ -1,9 +1,8 @@
 <% model = SdrViewComponents::Forms::TextAreaComponentPreview::TextAreaPreviewModel.new(description: nil) %>
-<% model.valid? %>
 
 <%= form_with(model: model, url: '/example') do |form| %>
   <%= render SdrViewComponents::Forms::TextAreaComponent.new(
-    form: form,
-    field_name: :description
-  ) %>
+        form: form,
+        field_name: :description
+      ) %>
 <% end %>

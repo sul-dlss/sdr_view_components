@@ -1,8 +1,8 @@
 <table class="table">
   <tbody>
     <%= render SdrViewComponents::Tables::RowComponent.new(
-      first_value: 'File set',
-      values: ['Preserved', 'Published']
-    ) %>
+          first_value: 'File set',
+          values: %w[Preserved Published]
+        ) %>
   </tbody>
 </table>

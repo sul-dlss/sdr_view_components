@@ -2,9 +2,9 @@
 
 <%= form_with(model: model, url: '/example') do |form| %>
   <%= render SdrViewComponents::Forms::CheckboxComponent.new(
-    form: form,
-    field_name: :test_boolean_field,
-    help_text: 'This help text appears below the checkbox.',
-    variant: :help_text_below
-  ) %>
+        form: form,
+        field_name: :test_boolean_field,
+        help_text: 'This help text appears below the checkbox.',
+        variant: :help_text_below
+      ) %>
 <% end %>

@@ -1,10 +1,10 @@
 <%= form_with(url: '/example', scope: :item) do |form| %>
   <%= render SdrViewComponents::Forms::LabelComponent.new(
-    form: form,
-    field_name: :title,
-    text: 'Collection title',
-    tooltip: 'Use the public title shown to repository users.'
-  ) %>
+        form: form,
+        field_name: :title,
+        text: 'Collection title',
+        tooltip: 'Use the public title shown to repository users.'
+      ) %>
 <% end %>
 
 <script>

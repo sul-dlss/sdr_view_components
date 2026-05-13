@@ -1,8 +1,8 @@
 <%= form_with(url: '/example', scope: :item) do |form| %>
   <%= render SdrViewComponents::Forms::LabelComponent.new(
-    form: form,
-    field_name: :title,
-    text: 'Collection title',
-    caption: 'Shown to repository users and search results.'
-  ) %>
+        form: form,
+        field_name: :title,
+        text: 'Collection title',
+        caption: 'Shown to repository users and search results.'
+      ) %>
 <% end %>

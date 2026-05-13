@@ -2,8 +2,8 @@
 
 <%= form_with(model: model, url: '/upload') do |form| %>
   <%= render SdrViewComponents::Forms::FileComponent.new(
-    form: form,
-    field_name: :document,
-    label_text: 'Upload your document'
-  ) %>
+        form: form,
+        field_name: :document,
+        label_text: 'Upload your document'
+      ) %>
 <% end %>

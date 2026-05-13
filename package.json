@@ -1,0 +1,14 @@
+{
+  "name": "app",
+  "private": "true",
+  "scripts": {
+    "stylelint": "stylelint \"app/assets/**/*.css\""
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "stylelint": "^17.11.0",
+    "stylelint-config-standard": "*"
+  }
+}

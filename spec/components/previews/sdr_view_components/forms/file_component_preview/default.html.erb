@@ -2,7 +2,7 @@
 
 <%= form_with(model: model, url: '/upload') do |form| %>
   <%= render SdrViewComponents::Forms::FileComponent.new(
-    form: form,
-    field_name: :file
-  ) %>
+        form: form,
+        field_name: :file
+      ) %>
 <% end %>
