@@ -1,0 +1,45 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe SdrViewComponents::Forms::SelectFieldComponent, type: :component do
+  let(:form) { build_form(test_model) }
+  let(:test_model) { build_model(test_string_field:) }
+  let(:test_string_field) { 'license' }
+  let(:field_name) { :test_string_field }
+
+  let(:options) { [['License Name', 'https://example.com/license']] }
+  let(:prompt) { 'Choose an option...' }
+  let(:help_text) { 'About this field' }
+
+  it 'creates field with label' do
+    render_inline(described_class.new(form:, field_name:, options:, required: false, label_text: 'license', prompt:))
+    expect(page).to have_css('label.form-label:not(.visually-hidden)', text: 'license')
+    expect(page).to have_css('select.form-select:not(.is-invalid)')
+    expect(page).to have_no_css('p.form-text')
+    expect(page).to have_no_css('div.invalid-feedback.is-invalid')
+  end
+
+  context 'when help text is provided' do
+    it 'creates field with help text' do
+      render_inline(described_class.new(form:, field_name:, options:, help_text:, label_text: 'license', prompt:))
+      expect(page).to have_css('label.form-label:not(.visually-hidden)', text: 'license')
+      expect(page).to have_css('select.form-select:not(.is-invalid)')
+      expect(page).to have_css('p.form-text')
+      expect(page).to have_no_css('div.invalid-feedback.is-invalid')
+    end
+  end
+
+  context 'when field has an error' do
+    before do
+      test_model.errors.add(field_name, 'is required')
+    end
+
+    it 'creates field with invalid feedback' do
+      render_inline(described_class.new(form:, field_name:, options:, required: true, prompt:))
+
+      expect(page).to have_css('.form-select.is-invalid')
+      expect(page).to have_css('div.invalid-feedback.is-invalid', text: 'is required')
+    end
+  end
+end
