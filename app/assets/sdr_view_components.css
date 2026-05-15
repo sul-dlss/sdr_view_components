@@ -108,3 +108,11 @@ table.table-data th {
   width: fit-content;
   white-space: nowrap;
 }
+
+/* Radio buttons */
+
+/* Inputs / labels are rendered in the opposite order than BS styles expect. */
+.form-check-label:has(+ .form-check-input:disabled), .form-check-label:has(+ .form-check-input[disabled]) {
+	cursor: default;
+	opacity: .5;
+}
