@@ -1,0 +1,11 @@
+<%= form_with(url: '/example', scope: :resource) do |form| %>
+  <%= render SdrViewComponents::Forms::BasicSelectFieldComponent.new(
+        form: form,
+        field_name: :type,
+        options: [
+          %w[Book book],
+          %w[Image image],
+          %w[Map map]
+        ]
+      ) %>
+<% end %>

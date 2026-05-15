@@ -32,6 +32,9 @@ RSpec/ExampleLength:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
 Naming/FileName:
   Exclude:
     - 'spec/dummy/Rakefile'

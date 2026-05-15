@@ -1,0 +1,15 @@
+<% model = SdrViewComponents::Forms::SelectFieldComponentPreview::SelectFieldPreviewModel.new(resource_type: 'map') %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::SelectFieldComponent.new(
+        form: form,
+        field_name: :resource_type,
+        options: [
+          %w[Book book],
+          %w[Image image],
+          %w[Map map]
+        ],
+        variant: :help_text_below,
+        help_text: 'Use the below-help-text variant when explanatory guidance should follow the select input.'
+      ) %>
+<% end %>
