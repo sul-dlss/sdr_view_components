@@ -5,7 +5,11 @@ module SdrViewComponents
     class RadioButtonComponentPreview < ViewComponent::Preview
       def default; end
 
+      # @!group With label
       def with_label; end
+
+      def with_disabled_label; end
+      # @!endgroup
 
       # @!group Help text
       def with_help_text; end
