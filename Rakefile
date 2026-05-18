@@ -26,7 +26,7 @@ begin
   desc 'Run herb against ERB files'
   task herb: :environment do
     puts 'Running ERB linter...'
-    sh('bin/herb analyze app --no-timing --non-interactive')
+    sh('bin/herb analyze app --no-timing')
   end
 
   desc 'Run all configured linters'
