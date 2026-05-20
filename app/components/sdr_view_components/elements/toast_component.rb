@@ -4,15 +4,20 @@ module SdrViewComponents
   module Elements
     # Component for rendering a toast element.
     class ToastComponent < BaseComponent
-      def initialize(title:, text: nil, close_text: nil, variant: :black)
+      def initialize(title:, text: nil, close_text: nil, variant: :black, disappearing: false)
         @title = title
         @text = text
         @close_text = close_text
         @variant = variant
+        @disappearing = disappearing
         super()
       end
 
-      attr_reader :title, :text, :close_text, :variant
+      attr_reader :title, :text, :close_text, :variant, :disappearing
+
+      def classes
+        merge_classes('toast align-items-center show', ('toast-disappear' if disappearing))
+      end
 
       def toast_body_classes
         merge_classes([background_color], %w[toast-body text-white])

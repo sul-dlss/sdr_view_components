@@ -1,8 +1,4 @@
-<div
-  class="toast align-items-center show"
-  role="alert"
-  aria-live="assertive"
-  aria-atomic="true">
+<%= tag.div class: classes, role: 'alert', aria: { live: 'assertive', atomic: 'true' } do %>
   <%= tag.div class: toast_body_classes do %>
     <div class="d-flex">
       <div
@@ -29,4 +25,4 @@
       </div>
     </div>
   <% end %>
-</div>
+<% end %>
