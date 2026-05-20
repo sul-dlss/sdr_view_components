@@ -21,6 +21,8 @@ module SdrViewComponents
       end
       # @!endgroup
 
+      def disappearing; end
+
       def with_close_text
         render SdrViewComponents::Elements::ToastComponent.new(title: 'Alert!', text: 'Black Toast text', close_text: 'Undo')
       end

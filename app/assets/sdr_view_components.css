@@ -116,3 +116,25 @@ table.table-data th {
 	cursor: default;
 	opacity: .5;
 }
+
+/* Toasts */
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    max-height: 200px;
+    visibility: visible;
+  }
+  79%  { opacity: 1; }
+  80%  { max-height: 200px; }
+
+  100% {
+    opacity: 0;
+    max-height: 0;
+    visibility: hidden;
+  }
+}
+
+.toast-disappear {
+  animation: fade-out 5s ease-in forwards;
+}
+
