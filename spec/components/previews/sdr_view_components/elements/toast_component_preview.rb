@@ -21,6 +21,8 @@ module SdrViewComponents
       end
       # @!endgroup
 
+      # The disappearing toast uses `sdr_view_components/toast_controller` to remove itself from the DOM after its
+      # fade-out animation completes.
       def disappearing; end
 
       def with_close_text

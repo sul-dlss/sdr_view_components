@@ -25,6 +25,27 @@ This set of components relies on the component library stylesheets, add:
 
 with the most recent date tagged release to your `application.html.erb` layout file.
 
+## JavaScript
+
+Some components require JavaScript. The gem ships Stimulus controllers under `app/javascript/sdr_view_components/` and registers that path with the asset pipeline automatically.
+
+Here is an example of how to add a Stimulus controller:
+
+The disappearing toast uses `sdr_view_components/toast_controller` to remove itself from the DOM after its fade-out animation completes.
+
+Add to `config/importmap.rb`:
+```ruby
+pin "sdr_view_components/toast_controller", to: "sdr_view_components/toast_controller.js"
+```
+
+Register the controller in `app/javascript/controllers/index.js`:
+```javascript
+import { application } from "controllers/application"
+import ToastController from "sdr_view_components/toast_controller"
+
+application.register("sdr-toast", ToastController)
+```
+
 ## Usage
 
 ### Form components

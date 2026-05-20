@@ -41,6 +41,12 @@ RSpec.describe SdrViewComponents::Elements::ToastComponent, type: :component do
 
       expect(page).to have_css('.toast.toast-disappear')
     end
+
+    it 'adds the sdr-toast stimulus controller' do
+      render_inline(described_class.new(title: 'My title', disappearing: true))
+
+      expect(page).to have_css('.toast[data-controller="sdr-toast"]')
+    end
   end
 
   context 'with disappearing: false' do
@@ -48,6 +54,12 @@ RSpec.describe SdrViewComponents::Elements::ToastComponent, type: :component do
       render_inline(described_class.new(title: 'My title', disappearing: false))
 
       expect(page).to have_no_css('.toast-disappear')
+    end
+
+    it 'does not add the sdr-toast stimulus controller' do
+      render_inline(described_class.new(title: 'My title', disappearing: false))
+
+      expect(page).to have_no_css('[data-controller="sdr-toast"]')
     end
   end
 
