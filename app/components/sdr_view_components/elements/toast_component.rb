@@ -3,6 +3,8 @@
 module SdrViewComponents
   module Elements
     # Component for rendering a toast element.
+    # The disappearing toast uses `sdr_view_components/toast_controller` to remove itself from the DOM after its
+    # fade-out animation completes.
     class ToastComponent < BaseComponent
       def initialize(title:, text: nil, close_text: nil, variant: :black, disappearing: false)
         @title = title
@@ -21,6 +23,10 @@ module SdrViewComponents
 
       def toast_body_classes
         merge_classes([background_color], %w[toast-body text-white])
+      end
+
+      def data
+        { controller: 'sdr-toast' } if disappearing
       end
 
       def background_color
