@@ -33,6 +33,12 @@ module SdrViewComponents
         render SdrViewComponents::Elements::ButtonLinkComponent.new(link: '/example', label: 'Info Link Button',
                                                                     variant: :info)
       end
+
+      def nil
+        render SdrViewComponents::Elements::ButtonLinkComponent.new(link: '/example', label: 'Nil Variant Link Button',
+                                                                    variant: nil)
+      end
+
       # @!endgroup
 
       # @!group Button Sizes
