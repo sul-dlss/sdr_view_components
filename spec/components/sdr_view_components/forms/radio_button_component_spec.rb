@@ -65,4 +65,22 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
       expect(page).to have_field(:test_string_field, class: 'form-check-input test-class')
     end
   end
+
+  # The label's for must match the id that form.radio_button generates for the input,
+  # otherwise the label is not associated with the input and clicking it does nothing.
+  context 'when the value contains characters that are not preserved in an id' do
+    {
+      'm&m' => 'test_string_field_mm',
+      'World' => 'test_string_field_world',
+      'Citation Only' => 'test_string_field_citation_only',
+      'a.b' => 'test_string_field_a_b'
+    }.each do |input_value, expected_id|
+      it "associates the label with the input for #{input_value.inspect}" do
+        render_inline(described_class.new(form:, field_name:, input_value:))
+
+        expect(page).to have_css("label.form-check-label[for=\"#{expected_id}\"]")
+        expect(page).to have_css("input.form-check-input[type=\"radio\"][id=\"#{expected_id}\"]")
+      end
+    end
+  end
 end

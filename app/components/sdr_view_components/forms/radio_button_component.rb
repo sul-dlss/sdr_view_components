@@ -15,14 +15,22 @@ module SdrViewComponents
       end
 
       def label_field_name
-        "#{sanitize(field_name)}_#{sanitize(input_args[:value])}"
+        "#{sanitize_method_name(field_name)}_#{sanitize_value(input_args[:value])}"
       end
 
       private
 
-      # From https://github.com/rails/rails/blob/main/actionview/lib/action_view/helpers/form_tag_helper.rb
-      def sanitize(value)
-        value.to_s.delete(']').tr('^-a-zA-Z0-9:.', '_')
+      # The input is rendered by form.radio_button, so the label's for must match the id that
+      # ActionView::Helpers::Tags::Base generates. These mirror its sanitized_method_name and
+      # sanitized_value. Note this is *not* form_tag_helper.rb's sanitize_to_id, which applies
+      # to radio_button_tag and disagrees on uppercase letters, '.', and other non-word chars.
+      # From https://github.com/rails/rails/blob/main/actionview/lib/action_view/helpers/tags/base.rb
+      def sanitize_method_name(name)
+        name.to_s.delete_suffix('?')
+      end
+
+      def sanitize_value(value)
+        value.to_s.gsub(/[\s.]/, '_').gsub(/[^-[[:word:]]]/, '').downcase
       end
     end
   end
