@@ -1,4 +1,4 @@
-<%= form_with(model:, id:, url:, html: { novalidate: true }) do |form| %>
+<%= form_with(model:, id:, url:, html: { novalidate: true, **html_options }) do |form| %>
   <% hidden_fields.each do |field| %>
     <%= form.hidden_field field %>
   <% end %>
