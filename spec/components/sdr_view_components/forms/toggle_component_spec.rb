@@ -7,7 +7,7 @@ RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do
   let(:test_model) { build_model }
   let(:field_name) { :test_boolean_field }
   let(:label_text) { 'Test Toggle' }
-  let(:component) { described_class.new(form:, field_name:, label_text:) }
+  let(:component) { described_class.new(form:, field_name:, label_text:, container_classes: 'field-container') }
 
   before do
     component.with_left_toggle_option(form:, field_name:, label: 'Type 1', value: 'type1', data: { test: 'test_data' })
@@ -24,5 +24,6 @@ RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do
     expect(page).to have_css('label.btn.rounded-end-pill', text: 'Type 2')
     expect(page).to have_no_css('p.form-text')
     expect(page).to have_no_css('div.invalid-feedback.is-invalid')
+    expect(page).to have_css('div.field-container')
   end
 end
