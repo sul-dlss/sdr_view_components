@@ -13,4 +13,17 @@ RSpec.describe SdrViewComponents::TabForm::HiddenFieldsFormComponent, type: :com
     expect(page).to have_css('form#tabbed_form input[type=hidden][name$="[test_string_field]"][value="a value"]',
                              visible: :all)
   end
+
+  context 'with html_options' do
+    let(:component) do
+      described_class.new(model:, id: 'tabbed_form', hidden_fields: %i[test_string_field], url: '#',
+                          html_options: { enctype: 'multipart/form-data' })
+    end
+
+    it 'renders a form with the given html options' do
+      render_inline(component)
+
+      expect(page).to have_css('form#tabbed_form[novalidate][enctype="multipart/form-data"]')
+    end
+  end
 end
