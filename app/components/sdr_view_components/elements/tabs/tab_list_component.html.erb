@@ -1,6 +1,6 @@
 <% if collapse_below? %>
   <div data-controller="sdr-tab-select" data-action="shown.bs.tab->sdr-tab-select#sync">
-    <%= tag.select class: select_classes, 'aria-label': 'Select a tab', data: { sdr_tab_select_target: 'select', action: 'sdr-tab-select#change' } do %>
+    <%= tag.select class: select_classes, 'aria-label': 'Select a tab', data: { sdr_tab_select_target: 'select', action: 'sdr-tab-select#change turbo:before-morph-element->sdr-tab-select#preventMorph' } do %>
       <% tabs.each do |tab| %><%= tag.option(tab.label, value: tab.id, selected: tab.active?) %><% end %>
     <% end %>
 
