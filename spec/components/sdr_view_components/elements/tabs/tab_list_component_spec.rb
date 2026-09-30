@@ -56,7 +56,7 @@ RSpec.describe SdrViewComponents::Elements::Tabs::TabListComponent, type: :compo
       expect(page).to have_css('ul.nav.d-none.d-xl-flex[role="tablist"] button.nav-link', count: 2)
       expect(page).to have_css(
         'select.form-select.d-xl-none[aria-label="Select a tab"][data-sdr-tab-select-target="select"]' \
-        '[data-action="sdr-tab-select#change"]'
+        '[data-action="sdr-tab-select#change turbo:before-morph-element->sdr-tab-select#preventMorph"]'
       )
       expect(page).to have_css('select option[value="tab-1"][selected]', text: 'Tab 1')
       expect(page).to have_css('select option[value="tab-2"]:not([selected])', text: 'Tab 2')

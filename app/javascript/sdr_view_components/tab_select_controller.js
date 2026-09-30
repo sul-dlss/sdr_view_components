@@ -5,6 +5,9 @@ import { Controller } from '@hotwired/stimulus'
 // corresponding tab; activating a tab some other way (e.g. clicking the tab
 // list above the collapse breakpoint) keeps the select's value in sync.
 //
+// The select is excluded from Turbo morphs (e.g., page refreshes), which would otherwise reset
+// its value to the server-rendered selected option regardless of which tab is active.
+//
 // Uses window.bootstrap rather than `import * as bootstrap from 'bootstrap'`:
 // the UMD bootstrap.bundle.min.js has no ES module exports, so an ESM import
 // of it resolves to an empty namespace object even though the script itself
@@ -18,5 +21,9 @@ export default class extends Controller {
 
   sync (event) {
     this.selectTarget.value = event.target.id
+  }
+
+  preventMorph (event) {
+    if (event.target === this.selectTarget) event.preventDefault()
   }
 }
