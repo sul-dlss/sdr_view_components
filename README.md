@@ -78,6 +78,19 @@ import TabSelectController from "sdr_view_components/tab_select_controller"
 application.register("sdr-tab-select", TabSelectController)
 ```
 
+Its `overflow_menu` option similarly ships `sdr_view_components/tab_overflow_controller`, registered as `sdr-tab-overflow`:
+
+```ruby
+pin "sdr_view_components/tab_overflow_controller", to: "sdr_view_components/tab_overflow_controller.js"
+```
+
+```javascript
+import { application } from "controllers/application"
+import TabOverflowController from "sdr_view_components/tab_overflow_controller"
+
+application.register("sdr-tab-overflow", TabOverflowController)
+```
+
 ## Usage
 
 ### Form components
@@ -184,6 +197,8 @@ See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for 
   <% end %>
 <% end %>
 ```
+
+`TabListComponent` also accepts `overflow_menu: true`. When given, tabs that don't fit on a single row are moved into a trailing "More" dropdown tab instead of wrapping, and moved back out as space allows. It can be combined with `collapse_below:`. This requires the `sdr-tab-overflow` controller -- see [JavaScript](#javascript) above.
 
 ```
 <% render SdrViewComponent::....>

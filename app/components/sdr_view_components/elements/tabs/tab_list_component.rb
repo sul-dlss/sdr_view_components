@@ -19,11 +19,14 @@ module SdrViewComponents
         #   fully functional (the `<select>` drives the same Bootstrap tab JavaScript) -- this
         #   only changes how they're presented at narrow viewports. Leave nil (the default) to
         #   always render the tabs.
-        def initialize(classes: [], content_classes: [], variant: :default, collapse_below: nil)
+        # @param overflow_menu [Boolean] if true, tabs that don't fit on a single row are moved into a
+        #   trailing "More" dropdown tab (by the `sdr-tab-overflow` controller).
+        def initialize(classes: [], content_classes: [], variant: :default, collapse_below: nil, overflow_menu: false)
           @classes = classes
           @content_classes = content_classes
           @variant = variant
           @collapse_below = collapse_below
+          @overflow_menu = overflow_menu
 
           raise ArgumentError, "Invalid variant: #{variant}" unless %i[underline default].include?(variant)
           if collapse_below && BREAKPOINTS.exclude?(collapse_below)
@@ -35,6 +38,17 @@ module SdrViewComponents
 
         def collapse_below?
           @collapse_below.present?
+        end
+
+        def overflow_menu?
+          @overflow_menu
+        end
+
+        def tab_list_data
+          return {} unless overflow_menu?
+
+          { controller: 'sdr-tab-overflow', action: 'shown.bs.tab->sdr-tab-overflow#syncMoreActive ' \
+                                                    'turbo:before-morph-element->sdr-tab-overflow#preventMorph' }
         end
 
         def classes

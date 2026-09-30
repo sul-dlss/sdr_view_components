@@ -12,6 +12,8 @@ module SdrViewComponents
         def with_header; end
 
         def collapsible; end
+
+        def overflow_menu; end
       end
     end
   end
