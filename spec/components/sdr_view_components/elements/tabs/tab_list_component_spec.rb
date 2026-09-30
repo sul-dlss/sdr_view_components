@@ -63,6 +63,40 @@ RSpec.describe SdrViewComponents::Elements::Tabs::TabListComponent, type: :compo
     end
   end
 
+  context 'when overflow_menu is not given' do
+    it 'does not render an overflow menu or controller' do
+      render_inline(described_class.new) do |component|
+        component.with_tab(label: 'Tab 1', id: 'tab-1', pane_id: 'pane-1', active: true)
+      end
+
+      expect(page).to have_no_css('[data-controller="sdr-tab-overflow"]')
+      expect(page).to have_no_css('.dropdown')
+    end
+  end
+
+  context 'when overflow_menu is true' do
+    it 'renders a hidden "More" dropdown after the tabs' do
+      render_inline(described_class.new(overflow_menu: true, collapse_below: :xl)) do |component|
+        component.with_tab(label: 'Tab 1', id: 'tab-1', pane_id: 'pane-1', active: true)
+        component.with_tab(label: 'Tab 2', id: 'tab-2', pane_id: 'pane-2')
+      end
+
+      expect(page).to have_css(
+        'ul.nav[data-controller="sdr-tab-overflow"]' \
+        '[data-action="shown.bs.tab->sdr-tab-overflow#syncMoreActive ' \
+        'turbo:before-morph-element->sdr-tab-overflow#preventMorph"] > li.nav-item',
+        count: 3
+      )
+      expect(page).to have_css(
+        'ul.nav > li.nav-item.dropdown.d-none:last-child[data-sdr-tab-overflow-target="more"] ' \
+        'button.nav-link.dropdown-toggle[data-bs-toggle="dropdown"]',
+        text: 'More'
+      )
+      expect(page).to have_css('li.dropdown ul.dropdown-menu[data-sdr-tab-overflow-target="menu"]:empty')
+      expect(page).to have_css('select option', count: 2)
+    end
+  end
+
   context 'when content_classes is given' do
     it 'merges the additional classes onto the tab content container' do
       render_inline(described_class.new(content_classes: %w[extra-class another-class])) do |component|

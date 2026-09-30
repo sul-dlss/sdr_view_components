@@ -1,5 +1,4 @@
 <%# Resize the preview frame below the sm breakpoint to see the tabs collapse into a select. %>
-<%# The sdr-tab-select controller isn't registered in this dummy app, so the select won't switch panes here -- see the consuming app for a working example. %>
 <%= render SdrViewComponents::Elements::Tabs::TabListComponent.new(variant: :underline, collapse_below: :sm) do |tab_list| %>
   <% tab_list.with_tab(label: 'Details', id: 'details-tab', pane_id: 'details-pane', active: true) %>
   <% tab_list.with_tab(label: 'History', id: 'history-tab', pane_id: 'history-pane') %>

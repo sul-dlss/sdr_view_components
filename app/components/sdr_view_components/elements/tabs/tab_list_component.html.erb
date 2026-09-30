@@ -1,17 +1,25 @@
+<% tab_list = capture do %>
+  <%= tag.ul class: classes, role: 'tablist', data: tab_list_data do %>
+    <% tabs.each do |tab| %><%= tab %><% end %>
+    <% if overflow_menu? %>
+      <li class="nav-item dropdown d-none" role="presentation" data-sdr-tab-overflow-target="more">
+        <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">More</button>
+        <ul class="dropdown-menu dropdown-menu-end" data-sdr-tab-overflow-target="menu"></ul>
+      </li>
+    <% end %>
+  <% end %>
+<% end %>
+
 <% if collapse_below? %>
   <div data-controller="sdr-tab-select" data-action="shown.bs.tab->sdr-tab-select#sync">
     <%= tag.select class: select_classes, 'aria-label': 'Select a tab', data: { sdr_tab_select_target: 'select', action: 'sdr-tab-select#change turbo:before-morph-element->sdr-tab-select#preventMorph' } do %>
       <% tabs.each do |tab| %><%= tag.option(tab.label, value: tab.id, selected: tab.active?) %><% end %>
     <% end %>
 
-    <%= tag.ul class: classes, role: 'tablist' do %>
-      <% tabs.each do |tab| %><%= tab %><% end %>
-    <% end %>
+    <%= tab_list %>
   </div>
 <% else %>
-  <%= tag.ul class: classes, role: 'tablist' do %>
-    <% tabs.each do |tab| %><%= tab %><% end %>
-  <% end %>
+  <%= tab_list %>
 <% end %>
 
 <%= header %>

@@ -1,0 +1,10 @@
+<%# Narrow the preview frame to see tabs that don't fit move into a "More" dropdown. %>
+<% labels = %w[Overview Description Files History Events Metadata Workflows Versions Releases Tags] %>
+<%= render SdrViewComponents::Elements::Tabs::TabListComponent.new(variant: :underline, overflow_menu: true) do |tab_list| %>
+  <% labels.each_with_index do |label, index| %>
+    <% tab_list.with_tab(label:, id: "#{label.downcase}-tab", pane_id: "#{label.downcase}-pane", active: index.zero?) %>
+    <% tab_list.with_pane(id: "#{label.downcase}-pane", tab_id: "#{label.downcase}-tab", active: index.zero?) do %>
+      <p><%= label %> pane content.</p>
+    <% end %>
+  <% end %>
+<% end %>
