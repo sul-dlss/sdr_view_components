@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus'
+import * as bootstrap from 'bootstrap'
 
 // Drives a <select> that stands in for a tab list on narrow viewports (see
 // TabListComponent's `collapse_below` option). Selecting an option shows the
@@ -7,16 +8,11 @@ import { Controller } from '@hotwired/stimulus'
 //
 // The select is excluded from Turbo morphs (e.g., page refreshes), which would otherwise reset
 // its value to the server-rendered selected option regardless of which tab is active.
-//
-// Uses window.bootstrap rather than `import * as bootstrap from 'bootstrap'`:
-// the UMD bootstrap.bundle.min.js has no ES module exports, so an ESM import
-// of it resolves to an empty namespace object even though the script itself
-// still assigns the real API to window.bootstrap as a side effect.
 export default class extends Controller {
   static targets = ['select']
 
   change (event) {
-    window.bootstrap.Tab.getOrCreateInstance(document.getElementById(event.target.value)).show()
+    bootstrap.Tab.getOrCreateInstance(document.getElementById(event.target.value)).show()
   }
 
   sync (event) {

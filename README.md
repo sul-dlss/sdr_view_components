@@ -29,6 +29,11 @@ with the most recent date tagged release to your `application.html.erb` layout f
 
 Some components require JavaScript. The gem ships Stimulus controllers under `app/javascript/sdr_view_components/` and registers that path with the asset pipeline automatically.
 
+The controllers that use Bootstrap's JavaScript import it as an ES module (`import * as bootstrap from "bootstrap"`), so `bootstrap` must be pinned to an ES module build of Bootstrap. The UMD `bootstrap.bundle.min.js` has no ES module exports and won't work. For example, in `config/importmap.rb`:
+```ruby
+pin "bootstrap", to: "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/+esm"
+```
+
 Here is an example of how to add a Stimulus controller:
 
 The disappearing toast uses `sdr_view_components/toast_controller` to remove itself from the DOM after its fade-out animation completes.
