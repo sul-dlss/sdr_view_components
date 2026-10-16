@@ -45,6 +45,13 @@ RSpec.describe SdrViewComponents::Elements::SpinnerComponent, type: :component d
     end
   end
 
+  context 'with a speed and no size' do
+    it 'renders the spinner with the speed' do
+      render_inline(described_class.new(speed: 2))
+      expect(page).to have_css('.spinner-border[style="--bs-spinner-animation-speed: 2s;"]')
+    end
+  end
+
   context 'with id' do
     it 'renders the spinner with the id' do
       render_inline(described_class.new(id: 'spinner-id'))

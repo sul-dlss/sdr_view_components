@@ -37,9 +37,11 @@ module SdrViewComponents
       end
 
       def spinner_style
-        return unless @height && @width
-
-        "height: #{@height}px; width: #{@width}px; --bs-spinner-animation-speed: #{@speed}s;"
+        [
+          ("height: #{@height}px;" if @height),
+          ("width: #{@width}px;" if @width),
+          "--bs-spinner-animation-speed: #{@speed}s;"
+        ].compact.join(' ')
       end
 
       private
