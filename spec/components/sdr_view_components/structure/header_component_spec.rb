@@ -29,7 +29,7 @@ RSpec.describe SdrViewComponents::Structure::HeaderComponent, type: :component d
       render_inline(described_class.new(title: 'Test Header'))
 
       expect(page).to have_text('Test Header')
-      expect(page).to have_no_selector('span.h4')
+      expect(page).to have_no_css('span.h4')
     end
   end
 
