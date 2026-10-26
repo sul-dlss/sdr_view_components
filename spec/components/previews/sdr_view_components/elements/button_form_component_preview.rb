@@ -34,6 +34,16 @@ module SdrViewComponents
       end
       # @!endgroup
 
+      # @!group Button Sizes
+      def small
+        render SdrViewComponents::Elements::ButtonFormComponent.new(link: '/action', label: 'Small Button', size: 'sm')
+      end
+
+      def large
+        render SdrViewComponents::Elements::ButtonFormComponent.new(link: '/action', label: 'Large Button', size: 'lg')
+      end
+      # @!endgroup
+
       # @!group With Confirmation
       def with_confirmation
         render SdrViewComponents::Elements::ButtonFormComponent.new(
