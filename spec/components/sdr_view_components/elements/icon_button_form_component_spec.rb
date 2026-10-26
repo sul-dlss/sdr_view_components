@@ -20,6 +20,13 @@ RSpec.describe SdrViewComponents::Elements::IconButtonFormComponent, type: :comp
     end
   end
 
+  context 'with a size' do
+    it 'renders the icon button form' do
+      render_inline(described_class.new(link:, icon: :delete, label: 'Delete', size: :sm))
+      expect(page).to have_button(class: 'btn btn-outline-primary btn-sm')
+    end
+  end
+
   context 'with classes' do
     it 'renders the icon button form' do
       render_inline(described_class.new(link:, icon: :delete, label: 'Delete', classes: %w[class1 class2]))

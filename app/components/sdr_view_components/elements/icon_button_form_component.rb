@@ -4,12 +4,13 @@ module SdrViewComponents
   module Elements
     # Component for a button which is an icon and is wrapped in a form
     class IconButtonFormComponent < BaseComponent
-      def initialize(link:, icon:, label:, variant: :'outline-primary', classes: [], icon_classes: [], method: :get, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
-                     confirm: nil, top: true, data: {}, disabled: false, params: {})
+      def initialize(link:, icon:, label:, variant: :'outline-primary', size: nil, classes: [], icon_classes: [], # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
+                     method: :get, confirm: nil, top: true, data: {}, disabled: false, params: {})
         @link = link
         @icon = icon
         @label = label
         @variant = variant
+        @size = size
         @classes = classes
         @icon_classes = icon_classes
         @method = method
@@ -29,7 +30,8 @@ module SdrViewComponents
 
       def call
         button_to(link, method: @method,
-                        class: ComponentSupport::ButtonSupport.classes(variant: @variant, classes:, disabled: @disabled),
+                        class: ComponentSupport::ButtonSupport.classes(variant: @variant, size: @size, classes:,
+                                                                       disabled: @disabled),
                         form: { data: },
                         params:) do
           concat button_icon

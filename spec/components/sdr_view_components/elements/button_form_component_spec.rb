@@ -25,6 +25,13 @@ RSpec.describe SdrViewComponents::Elements::ButtonFormComponent, type: :componen
     end
   end
 
+  context 'with a size' do
+    it 'renders the button form' do
+      render_inline(described_class.new(link:, size: 'sm', label: 'Submit'))
+      expect(page).to have_button('Submit', class: 'btn btn-primary btn-sm')
+    end
+  end
+
   context 'with classes' do
     it 'renders the button form' do
       render_inline(described_class.new(link:, classes: %w[class1 class2], label: 'Submit'))
