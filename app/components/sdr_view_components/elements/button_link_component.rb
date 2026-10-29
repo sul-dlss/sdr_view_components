@@ -20,10 +20,12 @@ module SdrViewComponents
       attr_reader :link, :label
 
       def call
-        link_to(link, class: ComponentSupport::ButtonSupport.classes(classes: @classes, variant: @variant,
-                                                                     bordered: @bordered, size: @size,
-                                                                     disabled: @disabled),
-                      **@options) do
+        classes = ComponentSupport::ButtonSupport.classes(classes: @classes, variant: @variant,
+                                                          bordered: @bordered, size: @size, disabled: @disabled)
+        # The class only styles the link; dropping href keeps it from being followed from the keyboard.
+        return tag.a(class: classes, aria: { disabled: true }, tabindex: -1, **@options) { label || content } if @disabled
+
+        link_to(link, class: classes, **@options) do
           label || content
         end
       end
