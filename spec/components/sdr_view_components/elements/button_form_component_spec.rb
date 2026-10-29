@@ -69,17 +69,17 @@ RSpec.describe SdrViewComponents::Elements::ButtonFormComponent, type: :componen
   end
 
   context 'when disabled' do
-    it 'renders the button with the disabled class' do
+    it 'renders a disabled button with the disabled class' do
       render_inline(described_class.new(link:, label: 'Submit', disabled: true))
-      expect(page).to have_button('Submit', class: 'btn btn-primary disabled')
+      expect(page).to have_button('Submit', class: 'btn btn-primary disabled', disabled: true)
     end
   end
 
   context 'when not disabled' do
-    it 'renders the button without the disabled class' do
+    it 'renders an enabled button without the disabled class' do
       render_inline(described_class.new(link:, label: 'Submit', disabled: false))
-      expect(page).to have_button('Submit', class: 'btn btn-primary')
-      expect(page).to have_no_button(class: 'disabled')
+      expect(page).to have_button('Submit', class: 'btn btn-primary', disabled: false)
+      expect(page).to have_no_button(class: 'disabled', disabled: :all)
     end
   end
 
