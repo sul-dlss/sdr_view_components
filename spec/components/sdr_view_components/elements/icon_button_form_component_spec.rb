@@ -65,16 +65,17 @@ RSpec.describe SdrViewComponents::Elements::IconButtonFormComponent, type: :comp
   end
 
   context 'when disabled' do
-    it 'renders the button with the disabled class' do
+    it 'renders a disabled button with the disabled class' do
       render_inline(described_class.new(link:, icon: :delete, label: 'Delete', disabled: true))
-      expect(page).to have_button(class: 'btn btn-outline-primary disabled')
+      expect(page).to have_button(class: 'btn btn-outline-primary disabled', disabled: true)
     end
   end
 
   context 'when not disabled' do
-    it 'renders the button without the disabled class' do
+    it 'renders an enabled button without the disabled class' do
       render_inline(described_class.new(link:, icon: :delete, label: 'Delete', disabled: false))
-      expect(page).to have_no_button(class: 'disabled')
+      expect(page).to have_button('Delete', disabled: false)
+      expect(page).to have_no_button(class: 'disabled', disabled: :all)
     end
   end
 

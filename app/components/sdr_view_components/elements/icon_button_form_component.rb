@@ -32,6 +32,8 @@ module SdrViewComponents
         button_to(link, method: @method,
                         class: ComponentSupport::ButtonSupport.classes(variant: @variant, size: @size, classes:,
                                                                        disabled: @disabled),
+                        # The class only styles the button; the attribute keeps it from submitting the form.
+                        disabled: @disabled,
                         form: { data: },
                         params:) do
           concat button_icon
