@@ -1,0 +1,6 @@
+<%= render SdrViewComponents::Forms::FieldsetComponent.new(**fieldset_args) do %>
+  <% radio_buttons.each do |radio_button| %>
+    <%= radio_button %>
+  <% end %>
+  <%= render SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:) %>
+<% end %>

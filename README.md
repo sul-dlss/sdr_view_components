@@ -129,7 +129,18 @@ At a minimum, each of these components must be provided wih the `form:` and `fie
 
 An `input_aria:` hash is merged with the arias the component sets itself (`aria-invalid`, `aria-required`), and its `describedby` is added to the component's error and help text ids rather than replacing them.
 
-Pass `show_errors: false` to skip rendering the field's validation error. Use this when several inputs share one field, such as a group of radio buttons, so the error isn't repeated under each one. Render the error once yourself with `SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:)`. The inputs still point their `aria-describedby` at the error's id, so make sure it is rendered.
+#### Radio button groups
+
+Use `SdrViewComponents::Forms::RadioButtonGroupComponent` for a set of radio buttons that share a field. It renders the radio buttons in a `FieldsetComponent` and renders the field's validation error once for the group, rather than under each radio button. Each radio button gets `aria-invalid` and an `aria-describedby` pointing at that error. Arguments other than `form:` and `field_name:` (`label:`, `tooltip:`, `mark_required:`, `help_text:`, etc.) are passed to the `FieldsetComponent`; arguments to `with_radio_button` are passed to `RadioButtonComponent`.
+
+```erb
+<%= render SdrViewComponents::Forms::RadioButtonGroupComponent.new(form:, field_name: :delivery_method, label: 'Delivery method') do |group| %>
+  <% group.with_radio_button(input_value: 'email', label_text: 'Email') %>
+  <% group.with_radio_button(input_value: 'mail', label_text: 'Mail') %>
+<% end %>
+```
+
+For layouts the group component doesn't support (for example, showing the error next to one particular radio button), pass `show_errors: false` to each composed component to skip its validation error, and render the error once yourself with `SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:)`. The inputs still point their `aria-describedby` at the error's id, so make sure it is rendered.
 
 TODO:
 - Outline the supported params for each prefix
