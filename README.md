@@ -127,6 +127,8 @@ At a minimum, each of these components must be provided wih the `form:` and `fie
 - `help_`: is used to pass arguments to the help text available for the component.
 - `error_`: is used to pass arguments to the validation output of the component.
 
+An `input_aria:` hash is merged with the arias the component sets itself (`aria-invalid`, `aria-required`), and its `describedby` is added to the component's error and help text ids rather than replacing them.
+
 TODO:
 - Outline the supported params for each prefix
 - Provide an example instantiation and output

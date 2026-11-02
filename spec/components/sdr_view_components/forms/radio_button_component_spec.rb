@@ -52,6 +52,20 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
     end
   end
 
+  context 'when input aria is provided' do
+    before do
+      test_model.errors.add(field_name, 'is required')
+    end
+
+    it 'merges it with the field arias' do
+      render_inline(described_class.new(form:, field_name:, input_value: 'value1', help_text: 'Helpful text',
+                                        input_aria: { describedby: 'other_id', label: 'Option 1' }))
+      expect(page).to have_css('input[aria-invalid="true"]' \
+                               '[aria-describedby="test_string_field_error test_string_field_help other_id"]' \
+                               '[aria-label="Option 1"]')
+    end
+  end
+
   context 'when data is provided' do
     it 'creates field with data' do
       render_inline(described_class.new(form:, field_name:, input_value: nil, input_data: { test: 'test_data' }))

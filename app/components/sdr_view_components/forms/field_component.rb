@@ -57,8 +57,12 @@ module SdrViewComponents
       # Returns a hash of arguments for the input element.
       # Prefix and argument with 'input_' in order for it to be passed to
       # the input element.
+      # A caller-supplied :input_aria is merged with the field's arias, with
+      # describedby values joined.
       def input_args
-        args_for(args:, prefix: 'input_').merge({ aria: field_aria })
+        args_for(args:, prefix: 'input_').then do |input|
+          input.merge({ aria: merge_arias(field_aria, input[:aria]) })
+        end
       end
 
       # Returns a hash of arguments for the label element.
@@ -83,6 +87,14 @@ module SdrViewComponents
       ##########################################################################
 
       private
+
+      def merge_arias(arias, other_arias)
+        return arias if other_arias.blank?
+
+        arias.merge(other_arias.symbolize_keys) do |key, value, other_value|
+          key == :describedby ? merge_actions(value, other_value) : other_value
+        end
+      end
 
       def error_aria
         InvalidFeedbackSupport.arias_for(field_name:, form:).tap do |arias|

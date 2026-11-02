@@ -59,6 +59,25 @@ RSpec.describe SdrViewComponents::Forms::TextFieldComponent, type: :component do
     end
   end
 
+  context 'when input aria is provided' do
+    it 'merges it with the field arias' do
+      render_inline(described_class.new(form:, field_name:, mark_required: true,
+                                        input_aria: { describedby: 'other_id', label: 'Title' }))
+      expect(page).to have_css('input[aria-required="true"][aria-describedby="other_id"][aria-label="Title"]')
+    end
+
+    context 'when field has an error' do
+      before do
+        test_model.errors.add(field_name, 'is required')
+      end
+
+      it 'keeps the error in aria-describedby' do
+        render_inline(described_class.new(form:, field_name:, input_aria: { describedby: 'other_id' }))
+        expect(page).to have_css('input[aria-invalid="true"][aria-describedby="test_string_field_error other_id"]')
+      end
+    end
+  end
+
   context 'when input data is provided' do
     it 'creates field with data' do
       render_inline(described_class.new(form:, field_name:, input_data: { test: 'test_data' }))
