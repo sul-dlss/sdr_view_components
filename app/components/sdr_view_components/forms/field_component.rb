@@ -62,7 +62,8 @@ module SdrViewComponents
       # Prefix and argument with 'input_' in order for it to be passed to
       # the input element.
       # A caller-supplied :input_aria is merged with the field's arias, with
-      # describedby values joined.
+      # describedby values joined. The field's own arias (e.g. invalid, required)
+      # take precedence, so a caller can't override the field's error state.
       def input_args
         args_for(args:, prefix: 'input_').then do |input|
           input.merge({ aria: merge_arias(field_aria, input[:aria]) })
@@ -100,7 +101,7 @@ module SdrViewComponents
         return arias if other_arias.blank?
 
         arias.merge(other_arias.symbolize_keys) do |key, value, other_value|
-          key == :describedby ? merge_actions(value, other_value) : other_value
+          key == :describedby ? merge_actions(value, other_value) : value
         end
       end
 

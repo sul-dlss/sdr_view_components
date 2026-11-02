@@ -75,6 +75,12 @@ RSpec.describe SdrViewComponents::Forms::TextFieldComponent, type: :component do
         render_inline(described_class.new(form:, field_name:, input_aria: { describedby: 'other_id' }))
         expect(page).to have_css('input[aria-invalid="true"][aria-describedby="test_string_field_error other_id"]')
       end
+
+      it 'does not let the caller override the field arias' do
+        render_inline(described_class.new(form:, field_name:, mark_required: true,
+                                          input_aria: { invalid: false, required: false }))
+        expect(page).to have_css('input[aria-invalid="true"][aria-required="true"]')
+      end
     end
   end
 
