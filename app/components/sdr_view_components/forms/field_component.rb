@@ -6,7 +6,10 @@ module SdrViewComponents
     class FieldComponent < BaseComponent
       renders_one :additional_container_content
 
-      def initialize(form:, field_name:, container_classes: [], variant: :default, **args)
+      # @param show_errors [Boolean] Whether to render the field's invalid feedback. Set to false when several
+      #   inputs share a field (e.g. a radio button group) and the error is rendered once elsewhere. The input
+      #   still gets aria-invalid and an aria-describedby pointing at the field's error id.
+      def initialize(form:, field_name:, container_classes: [], variant: :default, show_errors: true, **args) # rubocop:disable Metrics/ParameterLists
         @form = form
         @field_name = field_name
         @container_classes = container_classes
@@ -15,6 +18,7 @@ module SdrViewComponents
         # This is necessary for some types of fields such as checkboxes.
         raise ArgumentError, 'invalid variant' unless %i[default help_text_below].include?(@variant)
 
+        @show_errors = show_errors
         @args = args
         super()
       end
@@ -83,6 +87,10 @@ module SdrViewComponents
 
       def help_text_below?
         variant == :help_text_below
+      end
+
+      def show_errors?
+        @show_errors
       end
       ##########################################################################
 

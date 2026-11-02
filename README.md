@@ -129,6 +129,8 @@ At a minimum, each of these components must be provided wih the `form:` and `fie
 
 An `input_aria:` hash is merged with the arias the component sets itself (`aria-invalid`, `aria-required`), and its `describedby` is added to the component's error and help text ids rather than replacing them.
 
+Pass `show_errors: false` to skip rendering the field's validation error. Use this when several inputs share one field, such as a group of radio buttons, so the error isn't repeated under each one. Render the error once yourself with `SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:)`. The inputs still point their `aria-describedby` at the error's id, so make sure it is rendered.
+
 TODO:
 - Outline the supported params for each prefix
 - Provide an example instantiation and output
