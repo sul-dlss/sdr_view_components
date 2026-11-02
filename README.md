@@ -127,6 +127,25 @@ At a minimum, each of these components must be provided wih the `form:` and `fie
 - `help_`: is used to pass arguments to the help text available for the component.
 - `error_`: is used to pass arguments to the validation output of the component.
 
+An `input_aria:` hash is merged with the arias the component sets itself (`aria-invalid`, `aria-required`), and its `describedby` is added to the component's error and help text ids rather than replacing them. The component's own arias take precedence, so `input_aria:` can add attributes but can't override the field's error or required state.
+
+#### Radio button groups
+
+Use `SdrViewComponents::Forms::RadioButtonGroupComponent` for a set of radio buttons that share a field. It renders the radio buttons in a `FieldsetComponent` and renders the field's validation error once for the group, rather than under each radio button. Each radio button gets `aria-invalid` and an `aria-describedby` pointing at that error. Arguments other than `form:` and `field_name:` (`label:`, `tooltip:`, `mark_required:`, `help_text:`, etc.) are passed to the `FieldsetComponent`; arguments to `with_radio_button` are passed to `RadioButtonComponent`.
+
+A block given to `with_radio_button` is rendered as that radio button's additional container content, for example a field that applies only when that option is chosen.
+
+```erb
+<%= render SdrViewComponents::Forms::RadioButtonGroupComponent.new(form:, field_name: :delivery_method, label: 'Delivery method') do |group| %>
+  <% group.with_radio_button(input_value: 'email', label_text: 'Email') do %>
+    <%= render SdrViewComponents::Forms::TextFieldComponent.new(form:, field_name: :email_address, label_text: 'Email address') %>
+  <% end %>
+  <% group.with_radio_button(input_value: 'mail', label_text: 'Mail') %>
+<% end %>
+```
+
+For layouts the group component doesn't support (for example, showing the error next to one particular radio button), pass `show_errors: false` to each composed component to skip its validation error, and render the error once yourself with `SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:)`. The inputs still point their `aria-describedby` at the error's id, so make sure it is rendered.
+
 TODO:
 - Outline the supported params for each prefix
 - Provide an example instantiation and output

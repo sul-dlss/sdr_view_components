@@ -52,6 +52,40 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonComponent, type: :component 
     end
   end
 
+  context 'when a group of radio buttons shares a field with an error' do
+    before do
+      test_model.errors.add(field_name, 'is required')
+    end
+
+    it 'renders the error once, with the radios described by it' do
+      html = [
+        described_class.new(form:, field_name:, input_value: 'value1', show_errors: false),
+        described_class.new(form:, field_name:, input_value: 'value2', show_errors: false),
+        SdrViewComponents::Forms::InvalidFeedbackComponent.new(form:, field_name:)
+      ].map { |component| render_inline(component).to_html }.join
+      group = Capybara.string(html)
+
+      expect(group).to have_css('div.invalid-feedback', text: 'is required', count: 1)
+      expect(group).to have_css('#test_string_field_error', count: 1)
+      expect(group).to have_css('input[type="radio"][aria-invalid="true"][aria-describedby="test_string_field_error"]',
+                                count: 2)
+    end
+  end
+
+  context 'when input aria is provided' do
+    before do
+      test_model.errors.add(field_name, 'is required')
+    end
+
+    it 'merges it with the field arias' do
+      render_inline(described_class.new(form:, field_name:, input_value: 'value1', help_text: 'Helpful text',
+                                        input_aria: { describedby: 'other_id', label: 'Option 1' }))
+      expect(page).to have_css('input[aria-invalid="true"]' \
+                               '[aria-describedby="test_string_field_error test_string_field_help other_id"]' \
+                               '[aria-label="Option 1"]')
+    end
+  end
+
   context 'when data is provided' do
     it 'creates field with data' do
       render_inline(described_class.new(form:, field_name:, input_value: nil, input_data: { test: 'test_data' }))

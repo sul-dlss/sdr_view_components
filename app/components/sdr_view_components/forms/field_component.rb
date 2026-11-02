@@ -6,7 +6,10 @@ module SdrViewComponents
     class FieldComponent < BaseComponent
       renders_one :additional_container_content
 
-      def initialize(form:, field_name:, container_classes: [], variant: :default, **args)
+      # @param show_errors [Boolean] Whether to render the field's invalid feedback. Set to false when several
+      #   inputs share a field (e.g. a radio button group) and the error is rendered once elsewhere. The input
+      #   still gets aria-invalid and an aria-describedby pointing at the field's error id.
+      def initialize(form:, field_name:, container_classes: [], variant: :default, show_errors: true, **args) # rubocop:disable Metrics/ParameterLists
         @form = form
         @field_name = field_name
         @container_classes = container_classes
@@ -15,6 +18,7 @@ module SdrViewComponents
         # This is necessary for some types of fields such as checkboxes.
         raise ArgumentError, 'invalid variant' unless %i[default help_text_below].include?(@variant)
 
+        @show_errors = show_errors
         @args = args
         super()
       end
@@ -57,8 +61,13 @@ module SdrViewComponents
       # Returns a hash of arguments for the input element.
       # Prefix and argument with 'input_' in order for it to be passed to
       # the input element.
+      # A caller-supplied :input_aria is merged with the field's arias, with
+      # describedby values joined. The field's own arias (e.g. invalid, required)
+      # take precedence, so a caller can't override the field's error state.
       def input_args
-        args_for(args:, prefix: 'input_').merge({ aria: field_aria })
+        args_for(args:, prefix: 'input_').then do |input|
+          input.merge({ aria: merge_arias(field_aria, input[:aria]) })
+        end
       end
 
       # Returns a hash of arguments for the label element.
@@ -80,9 +89,21 @@ module SdrViewComponents
       def help_text_below?
         variant == :help_text_below
       end
+
+      def show_errors?
+        @show_errors
+      end
       ##########################################################################
 
       private
+
+      def merge_arias(arias, other_arias)
+        return arias if other_arias.blank?
+
+        arias.merge(other_arias.symbolize_keys) do |key, value, other_value|
+          key == :describedby ? merge_actions(value, other_value) : value
+        end
+      end
 
       def error_aria
         InvalidFeedbackSupport.arias_for(field_name:, form:).tap do |arias|
