@@ -23,6 +23,23 @@ RSpec.describe SdrViewComponents::Forms::RadioButtonGroupComponent, type: :compo
     expect(page).to have_no_css('div.invalid-feedback')
   end
 
+  context 'when a radio button is given a block' do
+    let(:component) { described_class.new(form:, field_name:, label: 'Test Group') }
+
+    before do
+      component.with_radio_button(input_value: 'value3', label_text: 'Value 3') do
+        '<p class="nested">Nested content</p>'.html_safe
+      end
+    end
+
+    it 'renders the block as that radio button\'s additional container content' do
+      render_inline(component)
+      expect(page).to have_css('div.form-check:has(input#test_string_field_value3) > p.nested',
+                               text: 'Nested content', count: 1)
+      expect(page).to have_css('p.nested', count: 1)
+    end
+  end
+
   context 'when field has an error' do
     before do
       test_model.errors.add(field_name, 'is required')

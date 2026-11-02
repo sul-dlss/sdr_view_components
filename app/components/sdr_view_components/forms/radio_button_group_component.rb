@@ -5,8 +5,11 @@ module SdrViewComponents
     # Component for a group of radio buttons that share a field.
     # The field's error is rendered once for the group rather than under each radio button.
     class RadioButtonGroupComponent < BaseComponent
-      renders_many :radio_buttons, lambda { |**args|
-        Forms::RadioButtonComponent.new(form:, field_name:, show_errors: false, **args)
+      # A block given to with_radio_button is rendered as the radio button's additional container content.
+      renders_many :radio_buttons, lambda { |**args, &block|
+        Forms::RadioButtonComponent.new(form:, field_name:, show_errors: false, **args).tap do |radio_button|
+          radio_button.with_additional_container_content(&block) if block
+        end
       }
 
       # @param fieldset_args [Hash] Passed to FieldsetComponent (e.g. label:, tooltip:, mark_required:, help_text:).

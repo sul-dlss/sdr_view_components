@@ -1,0 +1,18 @@
+<% model = SdrViewComponents::Forms::RadioButtonGroupComponentPreview::RadioButtonGroupPreviewModel.new(delivery_method: 'email') %>
+
+<%= form_with(model: model, url: '/example') do |form| %>
+  <%= render SdrViewComponents::Forms::RadioButtonGroupComponent.new(
+        form: form,
+        field_name: :delivery_method,
+        label: 'Delivery method'
+      ) do |group| %>
+    <% group.with_radio_button(input_value: 'email', label_text: 'Email') do %>
+      <%= render SdrViewComponents::Forms::TextFieldComponent.new(
+            form: form,
+            field_name: :email_address,
+            label_text: 'Email address'
+          ) %>
+    <% end %>
+    <% group.with_radio_button(input_value: 'mail', label_text: 'Mail') %>
+  <% end %>
+<% end %>
