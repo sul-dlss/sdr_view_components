@@ -30,11 +30,26 @@ module SdrViewComponents
 
       def select(method, choices = nil, options = {}, html_options = {}, &)
         html_options[:form] ||= id
-        super
+        return super unless html_options[:multiple] && options.fetch(:include_hidden, true)
+
+        # Rails' hidden blank input (so that selecting nothing is submitted) doesn't get the form attribute.
+        select_hidden_field(method, html_options) +
+          super(method, choices, options.merge(include_hidden: false), html_options, &)
       end
 
       def id
         super || options[:parent_builder]&.id
+      end
+
+      private
+
+      def select_hidden_field(method, html_options)
+        hidden_options = { value: '', multiple: true, form: html_options[:form], name: html_options[:name],
+                           disabled: html_options[:disabled] }.compact
+        # Without an id, so that it doesn't duplicate the select's.
+        hidden_options[:id] = nil
+        hidden_options[:autocomplete] = 'off' unless ActionView::Base.remove_hidden_field_autocomplete
+        hidden_field(method, hidden_options)
       end
     end
   end
