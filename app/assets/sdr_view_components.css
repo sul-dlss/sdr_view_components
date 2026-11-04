@@ -176,6 +176,27 @@ fieldset.form-fieldset legend {
   padding-bottom: 80px;
 }
 
+/* Collapsible section */
+.collapsible-section-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+}
+
+.collapsible-section-icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.collapsible-section-toggle.collapsed .collapsible-section-icon {
+  transform: rotate(180deg);
+}
+
 /* Tables */
 table.table-h3 caption {
   padding: .25rem;
