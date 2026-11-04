@@ -228,6 +228,17 @@ See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for 
 <% render SdrViewComponent::....>
 ```
 
+### Collapsible section component
+
+`SdrViewComponents::Elements::CollapsibleSectionComponent` renders a heading that shows / hides the section content using Bootstrap's collapse. The `id:` is used for the collapsed content and must be unique on the page. It is expanded unless `expanded: false` is given.
+
+```erb
+<%= render SdrViewComponents::Elements::CollapsibleSectionComponent.new(id: 'pages', heading: 'Pages (12)', level: :h3,
+                                                                        heading_classes: 'text-uppercase') do %>
+  <p>Section content.</p>
+<% end %>
+```
+
 ### Navigation components
 
 SdrViewComponents provides components for building navigation bar items and dropdown menus:
