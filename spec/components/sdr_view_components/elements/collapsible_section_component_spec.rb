@@ -21,4 +21,20 @@ RSpec.describe SdrViewComponents::Elements::CollapsibleSectionComponent, type: :
     expect(page).to have_css('h2 button.collapsible-section-toggle.collapsed[aria-expanded="false"]')
     expect(page).to have_css('div#pages.collapse:not(.show)')
   end
+
+  it 'renders a heading provided by the slot' do
+    render_inline(described_class.new(id: 'pages')) do |component|
+      component.with_heading_content { 'Pages <span class="badge">2</span>'.html_safe }
+      'Body'
+    end
+
+    expect(page).to have_css('h2 button.collapsible-section-toggle span.badge', text: '2')
+    expect(page).to have_css('h2 button', text: 'Pages 2')
+    expect(page).to have_css('div#pages', text: 'Body')
+  end
+
+  it 'raises an error when no heading is provided' do
+    expect { render_inline(described_class.new(id: 'pages')) { 'Body' } }
+      .to raise_error(ArgumentError, 'Must provide heading or heading_content')
+  end
 end
