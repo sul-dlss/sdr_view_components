@@ -4,7 +4,9 @@ module SdrViewComponents
   module Elements
     # Component for a section whose heading toggles (Bootstrap collapse) the display of its content.
     class CollapsibleSectionComponent < BaseComponent
-      def initialize(id:, heading:, level: :h2, expanded: true, classes: [], heading_classes: []) # rubocop:disable Metrics/ParameterLists
+      renders_one :heading_content # alternative to the heading argument
+
+      def initialize(id:, heading: nil, level: :h2, expanded: true, classes: [], heading_classes: []) # rubocop:disable Metrics/ParameterLists
         @id = id
         @heading = heading
         @level = level
@@ -15,6 +17,10 @@ module SdrViewComponents
       end
 
       attr_reader :id, :heading, :level, :expanded, :heading_classes
+
+      def before_render
+        raise ArgumentError, 'Must provide heading or heading_content' unless heading.present? || heading_content?
+      end
 
       def classes
         merge_classes('collapsible-section', @classes)

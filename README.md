@@ -239,6 +239,17 @@ See the Lookbook preview for `SdrViewComponents::TabForm::TabListComponent` for 
 <% end %>
 ```
 
+Instead of `heading:`, the heading can be provided with the `heading_content` slot:
+
+```erb
+<%= render SdrViewComponents::Elements::CollapsibleSectionComponent.new(id: 'pages') do |component| %>
+  <% component.with_heading_content do %>
+    Pages <span class="badge text-bg-secondary">12</span>
+  <% end %>
+  <p>Section content.</p>
+<% end %>
+```
+
 ### Navigation components
 
 SdrViewComponents provides components for building navigation bar items and dropdown menus:

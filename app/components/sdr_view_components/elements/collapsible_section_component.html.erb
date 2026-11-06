@@ -2,7 +2,7 @@
   <%= render SdrViewComponents::Elements::HeadingComponent.new(level:, classes: heading_classes) do %>
     <%= tag.button type: 'button', class: toggle_classes, data: { bs_toggle: 'collapse', bs_target: "##{id}" }, aria: { expanded:, controls: id } do %>
       <%= helpers.icon(icon_classes: 'bi bi-chevron-up', classes: 'collapsible-section-icon', aria: { hidden: true }) %>
-      <%= heading %>
+      <%= heading || heading_content %>
     <% end %>
   <% end %>
   <%= tag.div id:, class: collapse_classes do %>
