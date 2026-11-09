@@ -4,10 +4,12 @@ module SdrViewComponents
   module Elements
     # It spins.
     class SpinnerComponent < BaseComponent
-      def initialize(message: 'Loading...', message_classes: [], message_position: :right, hide_message: false, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
+      DEFAULT_MESSAGE = 'Loading...'
+
+      def initialize(message: DEFAULT_MESSAGE, message_classes: [], message_position: :right, hide_message: false, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
                      image_path: nil, variant: nil, classes: [],
                      height: nil, width: nil, speed: 0.75, spinner_classes: ['mx-2'], **spinner_options)
-        @message = message
+        @message = message.presence
         @variant = variant
         @hide_message = hide_message
         @classes = classes
@@ -22,14 +24,19 @@ module SdrViewComponents
         super()
       end
 
-      attr_reader :message, :image_path, :spinner_options
+      attr_reader :image_path, :spinner_options
+
+      # Never blank, so the status region always announces something.
+      def status_message
+        @message || DEFAULT_MESSAGE
+      end
 
       def spinner_classes
         merge_classes('spinner-border', variant_class, border_class, @spinner_classes)
       end
 
       def message_classes
-        merge_classes(@message_classes, @hide_message ? 'visually-hidden' : nil)
+        merge_classes(@message_classes, hide_message? ? 'visually-hidden' : nil)
       end
 
       def classes
@@ -45,6 +52,10 @@ module SdrViewComponents
       end
 
       private
+
+      def hide_message?
+        @hide_message || @message.nil?
+      end
 
       def message_position_classes
         case @message_position # rubocop:disable Style/HashLikeCase
