@@ -20,10 +20,11 @@ RSpec.describe SdrViewComponents::Forms::ToggleComponent, type: :component do
     expect(page).to have_css('label.form-label:not(.visually-hidden)', text: 'Test Toggle')
     expect(page).to have_css('input[type="radio"]:not(.is-invalid)')
     expect(page).to have_css('input[data-test="test_data"]')
-    expect(page).to have_css('label.btn.rounded-start-pill', text: 'Type 1')
-    expect(page).to have_css('label.btn.rounded-end-pill', text: 'Type 2')
+    expect(page).to have_css('label.btn', text: 'Type 1')
+    expect(page).to have_css('label.btn', text: 'Type 2')
+    expect(page).to have_no_css('label.btn.rounded-start-pill, label.btn.rounded-end-pill')
     expect(page).to have_no_css('p.form-text')
     expect(page).to have_no_css('div.invalid-feedback.is-invalid')
-    expect(page).to have_css('div.field-container')
+    expect(page).to have_css('div.toggle-radio.field-container .btn-group')
   end
 end

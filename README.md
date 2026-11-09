@@ -19,7 +19,7 @@ gem 'sdr_view_components'
 This set of components relies on the component library stylesheets, add:
 
 ```
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2025-09-11/styles/sul.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-09-28/styles/sul.css">
 <%= stylesheet_link_tag "sdr_view_components", "data-turbo-track": "reload" %>
 ```
 
@@ -287,7 +287,7 @@ The [component-library](https://github.com/sul-dlss/component-library/) version 
 ```
 def initialize
   # Default URL for the component library assets
-  @component_library_url = 'https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-01-27'
+  @component_library_url = 'https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-09-28'
 end
 ```
 
