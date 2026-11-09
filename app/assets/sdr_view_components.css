@@ -8,6 +8,28 @@
   font-size: 2.25rem;
 }
 
+/* Toggle: the component library's .toggle-radio styles, plus a checkmark on the selected option.
+   A toggle of links (e.g., for switching views) marks the selected link with .active in place of :checked. */
+.toggle-radio .btn-check:checked + .btn::before,
+.toggle-radio .btn.active::before {
+  display: inline-block;
+  margin-right: 3px;
+  font-family: bootstrap-icons;
+  vertical-align: -15%;
+  content: "\F633";
+}
+
+/* Bootstrap styles a hovered radio label (.btn-check + .btn:hover) but not a hovered link,
+   so keep a link's colors on hover and, like a checked option, leave the selected one un-underlined. */
+.toggle-radio .btn-group a.btn {
+  --bs-btn-hover-bg: var(--bs-btn-bg);
+  --bs-btn-hover-color: var(--bs-btn-color);
+}
+
+.toggle-radio .btn-group .btn.active:hover {
+  --btn-hover-decoration: none;
+}
+
 /* Icon buttons */
 .icon-button.btn {
   --bs-btn-bg: transparent;
