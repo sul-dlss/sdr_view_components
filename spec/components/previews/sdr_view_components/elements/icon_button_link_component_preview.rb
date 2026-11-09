@@ -11,6 +11,17 @@ module SdrViewComponents
         )
       end
 
+      # A button whose classes draw its own icon.
+      def without_icon
+        render SdrViewComponents::Elements::IconButtonLinkComponent.new(
+          icon: nil,
+          label: 'Remove item',
+          link: '/example',
+          classes: 'btn-close',
+          variant: nil
+        )
+      end
+
       # @!group Disabled State
       def enabled
         render SdrViewComponents::Elements::IconButtonLinkComponent.new(
