@@ -19,6 +19,11 @@ module SdrViewComponents
       end
 
       attr_reader :form, :field_name
+
+      # toggle-radio applies the component library's toggle styles.
+      def container_classes
+        merge_classes('toggle-radio', super)
+      end
     end
   end
 end

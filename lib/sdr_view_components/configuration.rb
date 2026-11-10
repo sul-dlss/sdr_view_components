@@ -8,7 +8,7 @@ module SdrViewComponents
 
     def initialize
       # Default URL for the component library assets
-      @component_library_url = 'https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-01-27'
+      @component_library_url = 'https://cdn.jsdelivr.net/gh/sul-dlss/component-library@v2026-09-28'
     end
   end
 
