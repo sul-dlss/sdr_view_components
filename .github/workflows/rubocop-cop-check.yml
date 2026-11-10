@@ -30,8 +30,8 @@ jobs:
       - name: Check for rubocop version change
         id: version_check
         run: |
-          PREV=$(git show HEAD~1:Gemfile.lock | grep "    rubocop " | awk '{print $2}')
-          CURR=$(grep "    rubocop " Gemfile.lock | awk '{print $2}')
+          PREV=$(git show HEAD~1:Gemfile.lock | grep "    rubocop (\d" | awk '{print $2}')
+          CURR=$(grep "    rubocop (\d" Gemfile.lock | awk '{print $2}')
           echo "previous=$PREV" >> $GITHUB_OUTPUT
           echo "current=$CURR" >> $GITHUB_OUTPUT
           if [ "$PREV" != "$CURR" ]; then
