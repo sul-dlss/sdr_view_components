@@ -47,6 +47,25 @@ RSpec.describe SdrViewComponents::TabForm::TabListComponent, type: :component do
     expect(page).to have_css('#tabbed_form-invalid-description', visible: :all)
   end
 
+  it 'renders the default column classes' do
+    render_inline(component)
+    expect(page).to have_css('.tab-form > .col-md-3 .nav-pills')
+    expect(page).to have_css('.tab-form > .col-md-9 .tab-content')
+  end
+
+  context 'when column classes are provided' do
+    let(:component) do
+      described_class.new(id: 'tabbed_form', active_tab_name: :tab_one,
+                          tabs_classes: 'col-xl-2 col-md-3', panes_classes: 'col-xl-10 col-md-9')
+    end
+
+    it 'renders the provided column classes' do
+      render_inline(component)
+      expect(page).to have_css('.tab-form > .col-xl-2.col-md-3 .nav-pills')
+      expect(page).to have_css('.tab-form > .col-xl-10.col-md-9 .tab-content')
+    end
+  end
+
   context 'when a pane supports active_tab_name' do
     let(:pane_one) { TabListComponentSpecActiveTabAwarePaneComponent.new }
 

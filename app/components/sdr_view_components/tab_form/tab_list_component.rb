@@ -15,15 +15,19 @@ module SdrViewComponents
       renders_many :tabs, SdrViewComponents::TabForm::TabComponent
       renders_many :panes, ->(pane) { pane }
 
-      def initialize(id:, active_tab_name:, classes: [], data: {})
+      # @param tabs_classes [String] grid classes for the tabs column
+      # @param panes_classes [String] grid classes for the panes column
+      def initialize(id:, active_tab_name:, classes: [], data: {}, tabs_classes: 'col-md-3', panes_classes: 'col-md-9') # rubocop:disable Metrics/ParameterLists
         @id = id
         @active_tab_name = active_tab_name
         @classes = classes
         @data = data
+        @tabs_classes = tabs_classes
+        @panes_classes = panes_classes
         super()
       end
 
-      attr_reader :id, :active_tab_name
+      attr_reader :id, :active_tab_name, :tabs_classes, :panes_classes
 
       def classes
         # Provides tab-error, tab-form as the static default classes
