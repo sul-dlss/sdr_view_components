@@ -8,7 +8,7 @@ RSpec.describe SdrViewComponents::Elements::IconButtonLinkComponent, type: :comp
 
     expect(page).to have_link('Download', href: 'http://www.example.com')
     expect(page).to have_css('a.icon-button')
-    expect(page).to have_css('i.bi.bi-download')
+    expect(page).to have_css('i.bi.bi-download[aria-hidden="true"]')
   end
 
   context 'with data' do
@@ -51,6 +51,23 @@ RSpec.describe SdrViewComponents::Elements::IconButtonLinkComponent, type: :comp
       expect(page).to have_link('Download', href: 'http://www.example.com')
       expect(page).to have_no_css('.btn.disabled')
       expect(page).to have_no_css('a[aria-disabled], a[tabindex]')
+    end
+  end
+
+  context 'without an icon' do
+    it 'renders only the hidden label, for a button that draws its own icon' do
+      render_inline(described_class.new(icon: nil, label: 'Remove', link: 'http://www.example.com',
+                                        classes: 'btn-close', variant: nil))
+      expect(page).to have_link('Remove', href: 'http://www.example.com', class: 'btn-close')
+      expect(page).to have_no_css('i')
+      expect(page).to have_no_css('.btn-outline-primary')
+    end
+  end
+
+  context 'with an unknown icon' do
+    it 'raises UnknownComponentIcon' do
+      expect { render_inline(described_class.new(icon: :nonexistent, label: 'Download', link: '/path')) }
+        .to raise_error(SdrViewComponents::Error::UnknownComponentIcon, /nonexistent/)
     end
   end
 end

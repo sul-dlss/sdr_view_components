@@ -21,6 +21,11 @@ RSpec.describe SdrViewComponents::Elements::TooltipComponent, type: :component d
     expect(page).to have_css('.tooltip-info[aria-label="More information for My field"]')
   end
 
+  it 'hides the decorative icon from assistive technology' do
+    render_inline(described_class.new(target_label:, tooltip:))
+    expect(page).to have_css('.tooltip-info i.bi.bi-info-circle-fill[aria-hidden="true"]')
+  end
+
   it 'adds custom data to the tooltip' do
     render_inline(described_class.new(target_label:, tooltip:, data: { custom: 'value' }))
     expect(page).to have_css('.tooltip-info[data-custom="value"]')

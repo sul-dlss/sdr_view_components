@@ -7,7 +7,7 @@ RSpec.describe SdrViewComponents::Elements::IconButtonComponent, type: :componen
     render_inline(described_class.new(icon: :delete, label: 'Clear'))
     expect(page).to have_css('.btn.btn-outline-primary.icon-button')
     expect(page).to have_css('span.visually-hidden', text: 'Clear')
-    expect(page).to have_css('i.bi.bi-trash')
+    expect(page).to have_css('i.bi.bi-trash[aria-hidden="true"]')
   end
 
   context 'with data' do
@@ -49,6 +49,15 @@ RSpec.describe SdrViewComponents::Elements::IconButtonComponent, type: :componen
     it 'raises UnknownComponentIcon' do
       expect { render_inline(described_class.new(icon: :nonexistent, label: 'Clear')) }
         .to raise_error(SdrViewComponents::Error::UnknownComponentIcon, /nonexistent/)
+    end
+  end
+
+  context 'without an icon' do
+    it 'renders only the hidden label, for a button that draws its own icon' do
+      render_inline(described_class.new(icon: nil, label: 'Close', classes: 'btn-close', variant: nil))
+      expect(page).to have_button('Close', class: 'btn-close')
+      expect(page).to have_no_css('i')
+      expect(page).to have_no_css('.btn-outline-primary')
     end
   end
 end
