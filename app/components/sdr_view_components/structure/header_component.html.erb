@@ -6,7 +6,7 @@
       <a class="su-brand-bar__logo" href="https://www.stanford.edu">Stanford University</a>
     </div>
   </div>
-  <%= tag.nav class: collapsible_navbar_classes do %>
+  <%= tag.nav class: collapsible_navbar_classes, 'aria-label': primary_navigation_label do %>
     <div class="container">
       <%= render SdrViewComponents::Structure::HeaderSulLogoComponent.new(sul_logo:) %>
       <button
@@ -42,7 +42,7 @@
           </div>
         </div>
         <%= tag.div class: navbar_classes do %>
-          <nav class="collapse navbar-collapse align-items-start justify-content-md-end navbar-expand-md d-md-flex flex-column flex-md-row" aria-label="browse" id="user-util-collapse">
+          <%= tag.nav class: 'collapse navbar-collapse align-items-start justify-content-md-end navbar-expand-md d-md-flex flex-column flex-md-row', 'aria-label': secondary_navigation_label, id: 'user-util-collapse' do %>
             <% if secondary_navigation_links.any? %>
               <hr class="d-md-none text-white vw-100 my-0">
               <ul class="navbar-nav justify-content-md-end gap-0 gap-md-4 w-100 fw-semibold">
@@ -57,7 +57,7 @@
                 <%= link %>
               <% end %>
             </ul>
-          </nav>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -16,6 +16,29 @@ RSpec.describe SdrViewComponents::Structure::HeaderComponent, type: :component d
     expect(page).to have_css('span.rosette-logo')
   end
 
+  it 'labels both navigation landmarks by default' do
+    render_inline(described_class.new(title: 'Test Header'))
+
+    expect(page).to have_css('header > nav[aria-label="Utility"]')
+    expect(page).to have_css('nav#user-util-collapse[aria-label="browse"]')
+  end
+
+  context 'when primary_navigation_label is provided' do
+    it 'labels the top navigation bar with it' do
+      render_inline(described_class.new(title: 'Test Header', primary_navigation_label: 'Account'))
+
+      expect(page).to have_css('header > nav[aria-label="Account"]')
+    end
+  end
+
+  context 'when secondary_navigation_label is provided' do
+    it 'labels the collapsible navigation with it' do
+      render_inline(described_class.new(title: 'Test Header', secondary_navigation_label: 'Main'))
+
+      expect(page).to have_css('nav#user-util-collapse[aria-label="Main"]')
+    end
+  end
+
   context 'when sul_logo is polychrome' do
     it 'renders sul logo with polychrome class' do
       render_inline(described_class.new(title: 'Test Header', sul_logo: 'polychrome'))

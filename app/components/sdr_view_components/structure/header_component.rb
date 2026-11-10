@@ -25,17 +25,23 @@ module SdrViewComponents
       #                                      Used only when variant is :dark.
       # param rosette [Boolean] Whether to show the rosette logo.
       # param sul_logo [String, nil] Optional URL for SUL logo image. (polychrome, stacked-lg, stacked-mobile)
-      def initialize(title:, subtitle: nil, variant: :light, background_color: nil, rosette: true, sul_logo: nil) # rubocop:disable Metrics/ParameterLists
+      # param primary_navigation_label [String] aria-label for the top bar nav holding the primary links.
+      # param secondary_navigation_label [String] aria-label for the collapsible nav holding the secondary links.
+      def initialize(title:, subtitle: nil, variant: :light, background_color: nil, rosette: true, sul_logo: nil, # rubocop:disable Metrics/ParameterLists
+                     primary_navigation_label: 'Utility', secondary_navigation_label: 'browse')
         @title = title
         @subtitle = subtitle
         @variant = variant
         @background_color = background_color
         @rosette = rosette
         @sul_logo = sul_logo
+        @primary_navigation_label = primary_navigation_label
+        @secondary_navigation_label = secondary_navigation_label
         super()
       end
 
-      attr_reader :background_color, :rosette, :subtitle, :sul_logo, :title, :variant
+      attr_reader :background_color, :primary_navigation_label, :rosette,
+                  :secondary_navigation_label, :subtitle, :sul_logo, :title, :variant
 
       def masthead_classes
         merge_classes('masthead', VARIANT_MASTHEAD_CLASS[variant])
