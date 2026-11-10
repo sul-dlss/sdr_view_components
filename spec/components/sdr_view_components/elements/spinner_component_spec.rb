@@ -5,14 +5,26 @@ require 'rails_helper'
 RSpec.describe SdrViewComponents::Elements::SpinnerComponent, type: :component do
   it 'renders the spinner' do
     render_inline(described_class.new)
-    expect(page).to have_css(".spinner-border[role='status'].mx-2")
-    expect(page).to have_text('Loading...')
+    expect(page).to have_css('.spinner-border.mx-2:not([role])')
+    expect(page).to have_css("[role='status']", text: 'Loading...')
   end
 
   context 'with a custom, hidden message' do
-    it 'does not render the message' do
+    it 'visually hides the message in the status region' do
       render_inline(described_class.new(message: 'Hidden message...', hide_message: true))
-      expect(page).to have_css('.visually-hidden', text: 'Hidden message...')
+      expect(page).to have_css(".visually-hidden[role='status']", text: 'Hidden message...')
+    end
+  end
+
+  context 'with a blank message' do
+    it 'renders a visually hidden default message in the status region' do
+      render_inline(described_class.new(message: nil))
+      expect(page).to have_css(".visually-hidden[role='status']", text: 'Loading...')
+    end
+
+    it 'treats an empty message as blank' do
+      render_inline(described_class.new(message: ''))
+      expect(page).to have_css(".visually-hidden[role='status']", text: 'Loading...')
     end
   end
 
@@ -40,8 +52,9 @@ RSpec.describe SdrViewComponents::Elements::SpinnerComponent, type: :component d
   context 'with an image' do
     it 'renders the spinner with the image' do
       render_inline(described_class.new(image_path: 'image.jpg', height: 100, width: 100, speed: 1.5))
-      expect(page).to have_css('img[src="image.jpg"][alt="Spinner"][style="height: 100px; width: 100px; ' \
+      expect(page).to have_css('img[src="image.jpg"][alt=""]:not([role])[style="height: 100px; width: 100px; ' \
                                '--bs-spinner-animation-speed: 1.5s;"].spinner-border.border-0')
+      expect(page).to have_css("[role='status']", text: 'Loading...')
     end
   end
 
