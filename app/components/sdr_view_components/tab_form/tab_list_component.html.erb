@@ -1,5 +1,5 @@
 <%= tag.div class: classes, data: do %>
-  <div class="col-md-3">
+  <%= tag.div class: tabs_classes do %>
     <%= tag.div class: 'nav nav-pills d-flex flex-column rounded-top rounded-bottom', role: 'tablist navigation', 'aria-orientation': 'vertical', tabindex: '0' do %>
       <% tabs.each do |tab| %>
         <% tab.active_tab_name = active_tab_name %>
@@ -7,14 +7,14 @@
       <% end %>
     <% end %>
     <span class="required mt-2">* Required</span>
-  </div>
-  <div class="col-md-9">
+  <% end %>
+  <%= tag.div class: panes_classes do %>
     <div class="tab-content h-100">
       <% panes.each do |pane| %>
         <% pane.active_tab_name = active_tab_name if pane.respond_to?(:active_tab_name=) %>
         <%= pane %>
       <% end %>
     </div>
-  </div>
+  <% end %>
   <span id="<%= invalid_description_id %>" class="visually-hidden" data-sdr-tab-error-target="invalidDescription">Error: required fields missing</span>
 <% end %>
