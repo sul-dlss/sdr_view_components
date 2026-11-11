@@ -1,0 +1,9 @@
+<%= tag.tr role: 'row', tabindex: -1, hidden: hidden?, aria: { level: }, data: { sdr_treegrid_role: 'file' },
+           **row_options do %>
+  <%= tag.th scope: 'row', role: 'rowheader', class: 'treegrid-name fw-normal', style: indent_style do %>
+    <%= label || label_content %>
+  <% end %>
+  <% cells.each do |cell| %>
+    <%= cell %>
+  <% end %>
+<% end %>

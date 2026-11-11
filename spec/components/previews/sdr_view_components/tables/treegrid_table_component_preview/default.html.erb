@@ -1,0 +1,10 @@
+<%= render(SdrViewComponents::Tables::TreegridTableComponent.new(label: 'Files', id: 'preview-files', collapsed:,
+                                                                 remember_expanded: true)) do |component| %>
+  <% component.with_header(label: 'File/folder name') %>
+  <% component.with_header(label: 'Size') %>
+  <% files.each do |file| %>
+    <% component.with_file(path_parts: file[:path_parts], label: file[:label]) do |row| %>
+      <% row.with_cell { file[:size] } %>
+    <% end %>
+  <% end %>
+<% end %>
