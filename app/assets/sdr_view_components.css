@@ -216,6 +216,26 @@ table.table-data th {
   white-space: nowrap;
 }
 
+/* Treegrid tables */
+table.table-treegrid tr[data-sdr-treegrid-role="folder"] {
+  cursor: pointer;
+}
+
+table.table-treegrid .treegrid-name {
+  overflow-wrap: anywhere;
+}
+
+.treegrid-folder-icon {
+  display: inline-block;
+  margin-right: 0.25rem;
+  color: var(--bs-link-color);
+  transition: transform 0.2s ease-in-out;
+}
+
+table.table-treegrid tr[aria-expanded="false"] .treegrid-folder-icon {
+  transform: rotate(180deg);
+}
+
 /* Radio buttons */
 
 /* Inputs / labels are rendered in the opposite order than BS styles expect. */

@@ -1,0 +1,11 @@
+<%= tag.tr role: 'row', tabindex: -1, hidden: hidden?,
+           aria: { level:, expanded: expanded?.to_s },
+           data: { sdr_treegrid_role: 'folder', sdr_treegrid_key: key, action: 'click->sdr-treegrid#toggle' } do %>
+  <%= tag.th scope: 'row', role: 'rowheader', class: 'treegrid-name', style: indent_style do %>
+    <%= helpers.icon(icon_classes: 'bi bi-chevron-up', classes: 'treegrid-folder-icon', aria: { hidden: true }) %>
+    <span class="fw-bold"><%= label %></span>
+  <% end %>
+  <% empty_cells.times do %>
+    <td></td>
+  <% end %>
+<% end %>

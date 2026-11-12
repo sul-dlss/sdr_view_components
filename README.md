@@ -96,6 +96,19 @@ import TabOverflowController from "sdr_view_components/tab_overflow_controller"
 application.register("sdr-tab-overflow", TabOverflowController)
 ```
 
+`SdrViewComponents::Tables::TreegridTableComponent` (see [Treegrid table component](#treegrid-table-component) below) ships `sdr_view_components/treegrid_controller`, registered as `sdr-treegrid`:
+
+```ruby
+pin "sdr_view_components/treegrid_controller", to: "sdr_view_components/treegrid_controller.js"
+```
+
+```javascript
+import { application } from "controllers/application"
+import TreegridController from "sdr_view_components/treegrid_controller"
+
+application.register("sdr-treegrid", TreegridController)
+```
+
 ## Usage
 
 ### Form components
@@ -247,6 +260,24 @@ Instead of `heading:`, the heading can be provided with the `heading_content` sl
     Pages <span class="badge text-bg-secondary">12</span>
   <% end %>
   <p>Section content.</p>
+<% end %>
+```
+
+### Treegrid table component
+
+`SdrViewComponents::Tables::TreegridTableComponent` renders files as an [ARIA treegrid](https://www.w3.org/WAI/ARIA/apg/patterns/treegrid/): a row for each file, preceded by a collapsible row for each folder in its path, with Expand all / Collapse all controls when there are folders. Provide files in path order (each folder's files before its subfolders), with the `path_parts` of each file's folder. It requires the `sdr-treegrid` controller (see [JavaScript](#javascript) above).
+
+Folders are expanded unless `collapsed: true` is given. With `remember_expanded: true` (which requires an `id:`), folders the user expands or collapses stay so when the table is rendered again on the same page, e.g., when its turbo frame reloads. Enter on a file row activates the element in the row marked `data-sdr-treegrid-target="fileAction"`, if any.
+
+```erb
+<%= render SdrViewComponents::Tables::TreegridTableComponent.new(label: 'Files', id: 'files', collapsed: true) do |component| %>
+  <% component.with_header(label: 'File/folder name') %>
+  <% component.with_header(label: 'Size') %>
+  <% files.each do |file| %>
+    <% component.with_file(path_parts: file.path_parts, label: file.filename) do |row| %>
+      <% row.with_cell { number_to_human_size(file.size) } %>
+    <% end %>
+  <% end %>
 <% end %>
 ```
 
