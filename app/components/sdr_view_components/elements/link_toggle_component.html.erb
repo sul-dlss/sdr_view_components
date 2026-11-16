@@ -1,0 +1,7 @@
+<%= tag.div(class: container_classes) do %>
+  <%= tag.div(class: 'btn-group', role: 'group', aria: { label: }) do %>
+    <% links.each do |link| %>
+      <%= link_to link[:label], link[:path], **link_options(link) %>
+    <% end %>
+  <% end %>
+<% end %>
