@@ -312,6 +312,20 @@ SdrViewComponents provides components for building navigation bar items and drop
 </ul>
 ```
 
+### Link toggle component
+
+`SdrViewComponents::Elements::LinkToggleComponent` renders a group of links styled like `Forms::ToggleComponent`, for navigation such as switching between views of a page (use `Forms::ToggleComponent` when the choice is a form field). Each link is a hash of `label:`, `path:` and `selected:`; other keys are passed to `link_to`. The selected link gets the `active` class and `aria-current="page"`. `label:` is the group's accessible name and `classes:` adds classes to the container.
+
+```erb
+<%= render SdrViewComponents::Elements::LinkToggleComponent.new(
+      label: 'Select view',
+      links: [
+        { label: 'List view', path: list_path, selected: true },
+        { label: 'Grid view', path: grid_path, selected: false }
+      ]
+    ) %>
+```
+
 ## Component library version
 The [component-library](https://github.com/sul-dlss/component-library/) version is set in `lib/sdr_view_components/configuration.rb`.
 

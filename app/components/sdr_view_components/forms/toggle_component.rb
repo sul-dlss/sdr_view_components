@@ -3,6 +3,7 @@
 module SdrViewComponents
   module Forms
     # Component for a toggle-like radio button group field
+    # The design mirrors Elements::LinkToggleComponent, which uses links for navigation
     class ToggleComponent < FieldComponent
       renders_one :left_toggle_option, lambda { |**args|
         Forms::ToggleOptionComponent.new(position: :left, **args)
