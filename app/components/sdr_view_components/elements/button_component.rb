@@ -22,6 +22,8 @@ module SdrViewComponents
           class: ComponentSupport::ButtonSupport.classes(variant: @variant, size: @size, classes: @classes,
                                                          bordered: @bordered, disabled: @disabled),
           type: 'button',
+          # The class only styles the button; the attribute keeps it from being focused or clicked.
+          disabled: @disabled,
           **options
         ) do
           label || content
