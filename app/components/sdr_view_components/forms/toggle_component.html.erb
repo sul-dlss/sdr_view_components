@@ -1,8 +1,8 @@
 <%= tag.div(class: container_classes, **container_args) do %>
   <div class="d-flex"> <%# Aligns label and tooltip %>
-    <%= render SdrViewComponents::Forms::LabelComponent.new(form:, field_name:, **label_args) %>
+    <%= render SdrViewComponents::Forms::LabelComponent.new(form:, field_name:, id: label_id, **label_args) %>
   </div>
-  <div class="btn-group btn-group-toggle" role="group">
+  <div class="btn-group btn-group-toggle" role="group" aria-labelledby="<%= label_id %>">
     <%= left_toggle_option %>
     <%= right_toggle_option %>
   </div>

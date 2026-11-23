@@ -21,6 +21,11 @@ module SdrViewComponents
 
       attr_reader :form, :field_name
 
+      # The label names the radio group, since it has no single input to point at.
+      def label_id
+        form.field_id(field_name, 'label')
+      end
+
       # toggle-radio applies the component library's toggle styles.
       def container_classes
         merge_classes('toggle-radio', super)

@@ -4,9 +4,10 @@ module SdrViewComponents
   module Forms
     # Component for rendering a form label.
     class LabelComponent < BaseComponent
-      def initialize(form:, field_name:, text: nil, default_class: 'form-label', hidden: false, # rubocop:disable Metrics/ParameterLists
-                     classes: [], tooltip: nil, caption: nil, mark_required: false)
+      def initialize(form:, field_name:, text: nil, default_class: 'form-label', hidden: false, # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
+                     classes: [], tooltip: nil, caption: nil, mark_required: false, id: nil)
         @form = form
+        @id = id
         @text = text
         @field_name = field_name
         @hidden = hidden
@@ -18,7 +19,7 @@ module SdrViewComponents
         super()
       end
 
-      attr_reader :field_name, :form, :tooltip, :caption, :mark_required
+      attr_reader :field_name, :form, :tooltip, :caption, :mark_required, :id
 
       def text
         mark_label_required(label: @text.presence || field_name, mark_required:)
