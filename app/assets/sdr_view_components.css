@@ -211,6 +211,11 @@ table.table-h3 .list-unstyled {
   padding-left: 0;
 }
 
+/* A link that wraps in a cell gets one focus ring around all its lines. */
+.table td a:not(.btn) {
+  display: inline-block;
+}
+
 table.table-data th {
   width: fit-content;
   white-space: nowrap;

@@ -21,6 +21,12 @@ module SdrViewComponents
                              })
       end
 
+      # A single value is rendered without a list.
+      def with_single_value
+        render_with_template(template: 'sdr_view_components/tables/list_cell_component_preview/with_item_values',
+                             locals: { item_values: ['Published'] })
+      end
+
       # @!endgroup
     end
   end

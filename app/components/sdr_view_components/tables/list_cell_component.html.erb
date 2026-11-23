@@ -1,5 +1,10 @@
-<ul class="list-unstyled mb-0">
-  <% list_items.each do |item| %>
-    <li><%= item %></li>
-  <% end %>
-</ul>
+<%# A single value isn't a list, so screen readers announce the value rather than "list, 1 item". %>
+<% if list_items.one? %>
+  <%= list_items.first %>
+<% else %>
+  <ul class="list-unstyled mb-0">
+    <% list_items.each do |item| %>
+      <li><%= item %></li>
+    <% end %>
+  </ul>
+<% end %>
